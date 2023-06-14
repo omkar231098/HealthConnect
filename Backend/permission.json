@@ -1,19 +1,19 @@
 {
     "admin": {
-        "permitedRoutes": ["/"],
-        "permitedMethod": ["GET","POST","PATCH","DELETE"]
+        "permittedRoutes": ["/"],
+        "permittedMethod": ["GET","POST","PATCH","DELETE"]
 
     },
     "user": {
-        "permitedRoutes": ["/"],
-        "permitedMethod": ["GET"]
+        "permittedRoutes": ["/"],
+        "permittedMethod": ["GET"]
     },
-    "administreter":{
-        "permitedRoutes": ["/","/roleUpdate"],
-        "permitedMethod": ["GET","POST","PATCH","DELETE","PUT"]
+    "administrator":{
+        "permittedRoutes": ["/","/roleUpdate"],
+        "permittedMethod": ["GET","POST","PATCH","DELETE","PUT"]
     },
-    "selear":{
-        "permitedRoutes": ["/"],
-        "permitedMethod":["GET","POST"]
+    "doctor":{
+        "permittedRoutes": ["/"],
+        "permittedMethod":["GET","POST"]
     }
 }

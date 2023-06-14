@@ -1,5 +1,6 @@
 require("dotenv").config();
-const {user} = require("../../sql/models/index");
+const {user} = require("../../models/index");
+const {sendEmail} = require("../../utils/sendEmail")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 //user can is created this function
@@ -69,13 +70,56 @@ const getToken = async(req, res) => {
         if(!oldUser){
             res.status(404).send({isError:true,Msg:"User not found"})
         }else{
-            const isPassCorrect = await bcrypt.compare(oldUser.dataValues.password, req.body.password);
+            const isPassCorrect = await bcrypt.compare(oldUser.password, req.body.password);
             if(isPassCorrect){
-                const Token = await jwt.sign({name:oldUser.dataValues.name,role:oldUser.dataValues.role},process.env.secretKey,{ expiresIn: "1d" });
-                const refreshToken = await jwt.sign({name:oldUser.dataValues.name,role:oldUser.dataValues.role},process.env.secretKey,{ expiresIn: "7d" });
+                const Token = await jwt.sign({name:oldUser.name,role:oldUser.role},process.env.secretKey,{ expiresIn: "1d" });
+                const refreshToken = await jwt.sign({name:oldUser.name,role:oldUser.role},process.env.refreshSecretKey,{ expiresIn: "7d" });
                 res.status(202).send({isError:false,Msg:"Login Success",token:Token,refreshToken:refreshToken});
             }else{
                 res.status(401).send({isError:true,Msg:"Wrong credentials"})
+            }
+        }
+    }catch(err){
+        res.status(404).send({isError:true,Msg:err})
+    }
+}
+//forgot password here
+const forgotPassword = async(req, res) => {
+    try{
+        let oldUser = await user.findOne({ where: { email: req.body.email } });
+        console.log(oldUser);
+        if(!oldUser){
+            res.status(404).send({isError:true,Msg:"Email not found"})
+        }else{
+            let o=Math.floor(Math.random() * 1000000);
+            let newUser = await user.update(
+                { otp:o },
+                { where: { email:oldUser.email } }
+            )
+            sendEmail(oldUser.email,o,oldUser.name);
+            res.status(202).send({isError:false,Msg:"OTP Sended On Your Email!"});
+        }
+    }catch(err){
+        res.status(404).send({isError:true,Msg:err})
+    }
+}
+//
+const updatePassword = async(req, res) => {
+    try{
+        let oldUser = await user.findOne({ where: { email: req.body.email } });
+        console.log(oldUser);
+        if(!oldUser){
+            res.status(404).send({isError:true,Msg:"Email not found"})
+        }else{
+            if(oldUser.otp === req.body.otp){
+                req.body.password = bcrypt.hash(req.body.password,2)
+                let newUser = await user.update(
+                    { password:req.body.password },
+                    { where: { email:oldUser.email } }
+                )
+                res.status(202).send({isError:false,Msg:"OTP Sended On Your Email!"});
+            }else{
+                res.status(404).send({isError:true,Msg:"Wrong OTP"})
             }
         }
     }catch(err){
@@ -89,5 +133,7 @@ module.exports ={
     getUsers,
     updateUser,
     deleteUser,
-    getToken
+    getToken,
+    forgotPassword,
+    updatePassword
 }

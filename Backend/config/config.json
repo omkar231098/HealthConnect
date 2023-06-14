@@ -2,7 +2,7 @@
   "development": {
     "username": "admin",
     "password": "thiteshubham",
-    "database": "user",
+    "database": "students",
     "host": "myfirst.cicvbqicju9g.ap-south-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
