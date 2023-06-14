@@ -24,6 +24,7 @@
     "passport-google-oauth20": "^2.0.0",
     "sequelize": "^6.32.0",
     "sequelize-cli": "^6.6.1",
+    "socket.io": "^4.6.2",
     "uuid": "^9.0.0"
   }
 }

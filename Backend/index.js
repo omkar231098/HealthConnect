@@ -1,15 +1,42 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const db = require("./sql/models/index");
+const http = require('http');
+const {Server} = require('socket.io');
+const cookieParser = require("cookie-parser");
+const db = require("./models/index");
 const {userRouter} = require("./routes/userRouter");
 const app = express();
 
 //All the use statements below
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
+app.use(cors({
+    origin: '*'
+}))
+
+//Http server
+const httpServer =  http.createServer(app);
+
 //All the routes statements below
 app.use("/user",userRouter);
 
+//Web socket server
+const io = new Server(httpServer , {
+    cors : {
+        origin : '*'
+    }
+})
+
+//Io socket server
+io.on('connection', (socket) => {
+    console.log("new user connected",socket.id);
+    socket.on('join-room' , (data) => {
+    })
+    socket.on("chat",async(data)=>{
+})
+})
 
 //Siple get method statements
 app.get("/",(req,res)=>{
@@ -19,7 +46,13 @@ app.get("/",(req,res)=>{
 
 //All the databases statements below
 db.sequelize.sync().then(()=>{
-    app.listen(7890,()=>{
-        console.log(`runing on local host ${7890}`)
+    httpServer.listen(process.env.PORT , async() => {
+        try {
+            await connection;
+            console.log(`connected to DB`);
+        } catch (error) {
+            console.log(error);
+        }
+        console.log(`Server started at ${process.env.PORT}`);
     })
 })
