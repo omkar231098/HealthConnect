@@ -1,0 +1,19 @@
+{
+    "admin": {
+        "permitedRoutes": ["/"],
+        "permitedMethod": ["GET","POST","PATCH","DELETE"]
+
+    },
+    "user": {
+        "permitedRoutes": ["/"],
+        "permitedMethod": ["GET"]
+    },
+    "administreter":{
+        "permitedRoutes": ["/","/roleUpdate"],
+        "permitedMethod": ["GET","POST","PATCH","DELETE","PUT"]
+    },
+    "selear":{
+        "permitedRoutes": ["/"],
+        "permitedMethod":["GET","POST"]
+    }
+}
