@@ -5,16 +5,20 @@ const jwt = require("jsonwebtoken");
 const validateUserGoogle = async (req, res) => {
     let oldUser = await user.findAll({ where: { email: req.body.email } });
     if(oldUser){
-        const Token = await jwt.sign({name:oldUser.name,role:oldUser.role},process.env.secretKey,{ expiresIn: "1d" });
-        const refreshToken = await jwt.sign({name:oldUser.name,role:oldUser.role},process.env.refreshSecretKey,{ expiresIn: "7d" });
+        const Token = await jwt.sign({name:oldUser.name,role:oldUser.role,email:oldUser.email},process.env.secretKey,{ expiresIn: "1d" });
+        const refreshToken = await jwt.sign({name:oldUser.name,role:oldUser.role,email:oldUser.email},process.env.refreshSecretKey,{ expiresIn: "7d" });
+        res.cookie("token", Token);
+        res.cookie("refreshToken", refreshToken);
         res.status(202).send({isError:false,Msg:"Login Success",token:Token,refreshToken:refreshToken});
     } else {
         req.user.password = bcrypt.hashSync(req.user.password, 2);
         let newUser = await user.create({
             ...req.user
         })
-        const Token = await jwt.sign({name:user.name,role:user.role},process.env.secretKey,{ expiresIn: "1d" });
-        const refreshToken = await jwt.sign({name:user.name,role:user.role},process.env.refreshSecretKey,{ expiresIn: "7d" });
+        const Token = await jwt.sign({name:user.name,role:user.role,email:user.email},process.env.secretKey,{ expiresIn: "1d" });
+        const refreshToken = await jwt.sign({name:user.name,role:user.role,email:user.email},process.env.refreshSecretKey,{ expiresIn: "7d" });
+        res.cookie("token", Token);
+        res.cookie("refreshToken", refreshToken);
         res.status(202).send({isError:false,Msg:"Login Success",token:Token,refreshToken:refreshToken});
     }
 };
@@ -59,17 +63,21 @@ const validateUserGithub =async (req, res) => {
         }
 
         let oldUser = await user.findAll({ where: { email: req.user_details.email } });
-         if(oldUser){
-        const Token = await jwt.sign({name:oldUser.name,role:oldUser.role},process.env.secretKey,{ expiresIn: "1d" });
-        const refreshToken = await jwt.sign({name:oldUser.name,role:oldUser.role},process.env.refreshSecretKey,{ expiresIn: "7d" });
+        if(oldUser){
+        const Token = await jwt.sign({name:oldUser.name,role:oldUser.role,email:oldUser.email},process.env.secretKey,{ expiresIn: "1d" });
+        const refreshToken = await jwt.sign({name:oldUser.name,role:oldUser.role,email:oldUser.email},process.env.refreshSecretKey,{ expiresIn: "7d" });
+        res.cookie("token", Token);
+        res.cookie("refreshToken", refreshToken);
         res.status(202).send({isError:false,Msg:"Login Success",token:Token,refreshToken:refreshToken});
     } else {
         req.user_details.password = bcrypt.hashSync(req.user_details.password, 2);
         let newUser = await user.create({
             ...req.user_details
         })
-        const Token = await jwt.sign({name:user_details.name,role:user_details.role},process.env.secretKey,{ expiresIn: "1d" });
-        const refreshToken = await jwt.sign({name:user_details.name,role:user_details.role},process.env.refreshSecretKey,{ expiresIn: "7d" });
+        const Token = await jwt.sign({name:user_details.name,role:user_details.role,email:user_details.email},process.env.secretKey,{ expiresIn: "1d" });
+        const refreshToken = await jwt.sign({name:user_details.name,role:user_details.role,email:user_details.email},process.env.refreshSecretKey,{ expiresIn: "7d" });
+        res.cookie("token", Token);
+        res.cookie("refreshToken", refreshToken);
         res.status(202).send({isError:false,Msg:"Login Success",token:Token,refreshToken:refreshToken});
     }
 };

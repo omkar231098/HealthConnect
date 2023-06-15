@@ -6,6 +6,8 @@ const {Server} = require('socket.io');
 const cookieParser = require("cookie-parser");
 const db = require("./models/index");
 const {userRouter} = require("./routes/userRouter");
+const {doctorRouter} = require("./routes/doctorRouter");
+const {appointmentRouter} = require("./routes/appointmentRouter");
 const app = express();
 
 //All the use statements below
@@ -21,6 +23,8 @@ const httpServer =  http.createServer(app);
 
 //All the routes statements below
 app.use("/user",userRouter);
+app.use("/doctor",doctorRouter);
+app.use("/appoint",appointmentRouter);
 
 //Web socket server
 const io = new Server(httpServer , {
