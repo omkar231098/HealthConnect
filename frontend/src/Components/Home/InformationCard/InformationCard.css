@@ -1,0 +1,21 @@
+.info-icon {
+  font-size: 3em;
+}
+.info-primary {
+  background-color: #2563eb;
+}
+.info-dark {
+  background-color: #3a4256;
+}
+.info-card {
+  padding: 5px 5px;
+}
+.info-container {
+  box-shadow: 0px 4px 5px black;
+  height: 100px;
+  padding: 30px;
+}
+.info-container:hover {
+  box-shadow: 0px 8px 10px black;
+  transform: scaleY(1.12);
+}
