@@ -10,6 +10,8 @@ import google from "../Images/google.png"
 import github from "../Images/github.png"
 export default function Register() {
 
+
+  
   const navigate = useNavigate();
   const toastOptions = {
     position: "bottom-right",
@@ -53,6 +55,7 @@ export default function Register() {
   };
 
   const handleSubmit = async (event) => {
+
     event.preventDefault();
     console.log(values)
     handleValidation()
