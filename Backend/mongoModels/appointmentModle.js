@@ -7,6 +7,7 @@ const appointmentsSchema = mongoose.Schema({
     status:{type:Boolean,default:false,required:true},
     doctorEmail:{type:String,required:true},
     phoneNumber:{type:Number,required:true},
+    patientName:{type:String,required:true},
     symptoms:{type:String,required:true}
 });
 

@@ -1,5 +1,5 @@
-const { appointmentsModel }= require("../../models/appointmentModle");
-const { doctorScheduleModel }= require("../../models/doctorScheduleModel");
+const { appointmentsModel }= require("../../mongoModels/appointmentModle");
+const { doctorScheduleModel }= require("../../mongoModels/doctorScheduleModel");
 const {bookingEmail} = require("../../utils/bookingConfirmedMail");
 const {cancelEmail} = require("../../utils/bookingCancel");
 
@@ -64,6 +64,15 @@ const getAppointment = async(req,res)=>{
     }
 }
 
+const getDocAppointment = async(req,res)=>{
+    try{
+        let newAppointment = await appointmentsModel.find({doctorEmail:req.body.doctorEmail});
+        res.status(202).send({isError:false,Msg:newAppointment})
+    }catch(err){
+        res.status(404).send({isError:true,Msg:err})
+    }
+}
+
 const getAllAppointment = async(req,res)=>{
     try{
         let newAppointment = await appointmentsModel.find();
@@ -78,5 +87,6 @@ module.exports={
     deleteAppointment,
     acceptAppointment,
     getAppointment,
-    getAllAppointment
+    getAllAppointment,
+    getDocAppointment
 }
