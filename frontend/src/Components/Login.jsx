@@ -42,24 +42,24 @@ export default function Login() {
     event.preventDefault();
     validateForm()
     console.log(values)
-    // if (validateForm()) {
-    //   const { username, password } = values;
-    //   const { data } = await axios.post(loginRoute, {
-    //     username,
-    //     password,
-    //   });
-    //   if (data.status === false) {
-    //     toast.error(data.msg, toastOptions);
-    //   }
-    //   if (data.status === true) {
-    //     localStorage.setItem(
-    //       process.env.REACT_APP_LOCALHOST_KEY,
-    //       JSON.stringify(data.user)
-    //     );
+    if (validateForm()) {
+      const { username, password } = values;
+      const { data } = await axios.post(`${process.env.REACT_APP_BASEURL}user/log`, {
+        username,
+        password,
+      });
+      if (data.isError === true) {
+        toast.error(data.msg, toastOptions);
+      }
+      if (data.isError === false) {
+        localStorage.setItem(
+          process.env.REACT_APP_LOCALHOST_KEY,
+          JSON.stringify(data.user)
+        );
 
-    //     navigate("/");
-    //   }
-    // }
+        navigate("/");
+      }
+    }
   };
 
   return (
@@ -83,7 +83,7 @@ export default function Login() {
         />
         <button type="submit" className='login-btn'>Login</button>
         <span className='login-span'>
-          Don't have an account ?<Link to="/register">Register</Link>
+          Don't have an account ?<Link to="/register" className="register-link"> Register</Link>
         </span>
         <div className='login-with'>
         <img src={google} alt="google" className='login-auth'/>
@@ -91,6 +91,9 @@ export default function Login() {
         <img src={github} alt="github" className='login-auth'/>
         </div>
     </form>
+    <div>
+    <img src="https://i.pinimg.com/originals/13/66/c9/1366c95f8c249b8422d2caaae287cb63.gif" alt="register-image"  className='login-image'/>
+    </div>
     <ToastContainer />
   </div>
   )
