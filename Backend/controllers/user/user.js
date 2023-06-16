@@ -105,7 +105,7 @@ const forgotPassword = async(req, res) => {
                 { otp:o },
                 { where: { email:oldUser.email } }
             )
-            const isSended = await sendEmail(oldUser.email,o,oldUser.name,res);
+            const isSended = await sendEmail(oldUser.email,o,oldUser.name);
             console.log(isSended);
             if(isSended) {
                 res.status(202).send({isError:false,Msg:"OTP Sended On Your Email!",newUser});

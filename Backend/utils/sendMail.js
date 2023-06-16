@@ -2,7 +2,7 @@ require("dotenv").config();
 const sgMail = require("@sendgrid/mail");
 const sendEmail = async(sendEmail,Payload,Name)=>{
     console.log(sendEmail,Payload,Name);
-    let isEmail = false;
+    var isEmail = false;
     sgMail.setApiKey(process.env.SendGrid_Key);
     const msg = {
         to: sendEmail,
