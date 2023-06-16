@@ -1,0 +1,49 @@
+.navbar {
+  display: flex;
+  width: 100%;
+  /* border: 1px solid red; */
+  padding: 10px;
+  background-color: #faf9fa;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+  height: auto;
+  align-items: center;
+}
+
+.logo-navbar {
+  width: 200px;
+}
+
+.logobox {
+  width: auto;
+  height: 100%;
+  margin-left: 50px;
+}
+
+.ButtonBox {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 20px;
+  width: 80%;
+  margin-right: 100px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.loginbtn {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 30px 10px 30px;
+  font-size: 15px;
+  border-radius: 8px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.signinbtn {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 30px 10px 30px;
+  font-size: 15px;
+  border-radius: 8px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
