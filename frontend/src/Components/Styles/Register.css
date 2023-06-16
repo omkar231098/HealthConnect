@@ -1,3 +1,6 @@
+.Register-container {
+    display: flex;
+}
 
 .register-form {
     height: 100vh;
@@ -53,7 +56,6 @@
     display: flex;
    width: 60%;
    margin-left: 40%;
-   /* border: 1px solid red; */
 }
 
 .register-auth{
@@ -61,3 +63,79 @@
     width: 10%;
     cursor: pointer;
 }
+
+.register-image{
+    margin-top: 15%;
+    margin-left: 5%;
+}
+.register-link {
+  color: #4e0eff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-link:hover {
+  color: #0a60ca;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .register-form {
+      width: 80vw;
+      margin-left: 10%;
+    }
+  
+    .register-logo {
+      width: 60%;
+      margin-left: 20%;
+    }
+  
+    .register-with {
+      width: 80%;
+      margin-left: 30%;
+    }
+    
+    .register-image {
+        display: none;
+      }
+      .register-link {
+        color: #4e0eff;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      
+      .register-link:hover {
+        color: #0a60ca;
+      }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .register-form {
+      width: 90vw;
+      margin-left: 5%;
+    }
+  
+    .register-logo {
+      width: 80%;
+      margin-left: 10%;
+    }
+  
+    .register-with {
+      width: 90%;
+      margin-left: 35%;
+    }
+
+    .register-image {
+        display: none;
+      }
+      .register-link {
+        color: #4e0eff;
+        text-decoration:none;
+        font-weight: bold;
+      }
+      
+      .register-link:hover {
+        color: #0a60ca;
+      }
+  }

@@ -56,26 +56,26 @@ export default function Register() {
     event.preventDefault();
     console.log(values)
     handleValidation()
-    // if (handleValidation()) {
-    //   const { email, username, password,role } = values;
-    //   const { data } = await axios.post(registerRoute, {
-    //     username,
-    //     email,
-    //     password,
-    //     role
-    //   });
+    if (handleValidation()) {
+      const { email, username, password,role } = values;
+      const { data } = await axios.post(`${process.env.REACT_APP_BASEURL}user/reg`, {
+        username,
+        email,
+        password,
+        role
+      });
 
-    //   if (data.status === false) {
-    //     toast.error(data.msg, toastOptions);
-    //   }
-    //   if (data.status === true) {
-    //     localStorage.setItem(
-    //       process.env.REACT_APP_LOCALHOST_KEY,
-    //       JSON.stringify(data.user)
-    //     );
-    //     navigate("/");
-    //   }
-    // }
+      if (data.isError === true) {
+        toast.error(data.msg, toastOptions);
+      }
+      if (data.isError === false) {
+        localStorage.setItem(
+          process.env.REACT_APP_LOCALHOST_KEY,
+          JSON.stringify(data.user)
+        );
+        navigate("/");
+      }
+    }
   };
 
   const handleChange = (event) => {
@@ -117,7 +117,7 @@ export default function Register() {
           </select>
           <button type="submit" className='register-btn'>Create User</button>
           <span className='register-span'>
-            Already have an account ?<Link to="/login">Login.</Link>
+            Already have an account ?<Link to="/login" className="login-link"> Login</Link>
           </span>
           <div className='register-with'>
           <img src={google} alt="google" className='register-auth'/>
@@ -126,6 +126,9 @@ export default function Register() {
           </div>
           
       </form>
+      <div>
+        <img src="https://media3.giphy.com/media/ImDgA5DmScKnzlK1dj/giphy.gif?cid=ecf05e474tf3iaavsvuurged5gvorx9i7989gmy8umabyzmj&ep=v1_gifs_related&rid=giphy.gif&ct=g" alt="register-image"  className='register-image'/>
+      </div>
       <ToastContainer />
     </div>
   )
