@@ -12,9 +12,9 @@ root.render(
   <BrowserRouter>
     <ChakraProvider>
       <AuthContextProvider>
-        <StrictMode>
+ 
           <App />
-        </StrictMode>
+
       </AuthContextProvider>
     </ChakraProvider>
   </BrowserRouter>
