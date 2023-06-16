@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const authorization = (req, res, next) => {
-    const allRoles = JSON.parse(fs.readFileSync("./permission.json", "utf-8"));
+    const allRoles = JSON.parse(fs.readFileSync("../permission.json", "utf-8"));
     if (
         req.body.role &&
         allRoles[req.body.role] &&
