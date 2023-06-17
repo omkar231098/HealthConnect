@@ -1,5 +1,5 @@
 ## ABOUT THE PROJECT
-<h1> HEALTHCONNECT+ </h1>
+
 <div align="center"  width="55" height="55">
   <img src="frontend/src/Images/Logo.jpeg" alt="html" width="200" height="100"/>
   <br>
