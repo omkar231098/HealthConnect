@@ -5,6 +5,7 @@ const http = require('http');
 const {Server} = require('socket.io');
 const cookieParser = require("cookie-parser");
 const db = require("./models/index");
+
 const {userRouter} = require("./routes/userRouter");
 const {doctorRouter} = require("./routes/doctorRouter");
 const {appointmentRouter} = require("./routes/appointmentRouter");

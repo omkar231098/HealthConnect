@@ -23,7 +23,7 @@ root.render(
           <App />
 </Provider>
 
-         
+          < App />
 
       </AuthContextProvider>
     </ChakraProvider>
