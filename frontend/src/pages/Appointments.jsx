@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import LeftsidePaitent from "../Dashbord/LeftsidePaitent"
+import Navbar from '../Components/Basic/Navbar';
+import Footer from '../Components/Basic/Footer';
 
 
 export default function Appointments() {
@@ -26,7 +28,7 @@ export default function Appointments() {
 
     return (
         <div className="bg-dark" style={{ height: "100vh" }}>
-        <h2>Navbar</h2>
+        <Navbar />
         <div>
           <div className="row m-5" style={{ maxWidth: "100%" }}>
             <div className="col-3 col-md-3 p-4 bg-white ">
@@ -44,6 +46,7 @@ export default function Appointments() {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     )
 }
