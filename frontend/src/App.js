@@ -29,7 +29,6 @@ function App() {
             <Route path="/adminLogin" element={<AdminLogin/>}/>
             <Route path="/allAdminData" element={<AllData/>}/>
             <Route path="/admin" element={<AdminPage />} />
-         
 
             <Route path="/doctor/perosnaldetails" element ={<PersonalDetailsDocter />} />
             <Route path="/doctor" element ={<TodaysSchedule/>} />

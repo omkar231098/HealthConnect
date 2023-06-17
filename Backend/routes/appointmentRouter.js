@@ -1,6 +1,6 @@
 const express = require('express');
 const appointmentRouter = express.Router();
-const {createAppointment,deleteAppointment,acceptAppointment,getAppointment,getAllAppointment,getDocAppointment} = require("../controllers/appointment/appointment");
+const {createAppointment,deleteAppointment,acceptAppointment,getAppointment,getAllAppointment,getDocAppointment,getAllSlots} = require("../controllers/appointment/appointment");
 const {authorization} = require("../middlewares/authoriseControler");
 const {tokenValidator} = require("../middlewares/tokanValidator");
 
@@ -13,6 +13,7 @@ appointmentRouter.get("/find",tokenValidator,authorization,getAllAppointment);
 appointmentRouter.get("/doc",tokenValidator,authorization,getDocAppointment);
 appointmentRouter.post("/create",tokenValidator,createAppointment);
 appointmentRouter.post("/accept",tokenValidator,acceptAppointment);
+appointmentRouter.post("/getSlots",tokenValidator,getAllSlots);
 appointmentRouter.delete("/delete",tokenValidator,deleteAppointment);
 
 //All export statements

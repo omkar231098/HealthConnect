@@ -9,10 +9,9 @@ const createAppointment = async(req,res)=>{
         if(alreadyBooked){
             res.status(403).send({isError:true,Msg:`Doctor is already in booked for this time slot`})
         }else{
-            req.body.bookDate = new Date(req.body.bookDate);
             let newAppointment = new appointmentsModel(req.body);
             await newAppointment.save();
-            let newDoctor = new appointmentModel({
+            let newDoctor = new doctorScheduleModel({
                 doctorEmail:req.body.doctorEmail,
                 bookDate:req.body.bookDate,
                 bookTimeSlot:req.body.bookTimeSlot
@@ -82,11 +81,21 @@ const getAllAppointment = async(req,res)=>{
     }
 }
 
+const getAllSlots = async(req,res)=>{
+    try{
+        const alreadyBooked = await doctorScheduleModel.find({$and:[{doctorEmail:req.body.doctorEmail},{bookDate:req.body.bookDate}]})
+        res.status(202).send({isError:false,Msg:alreadyBooked})
+    }catch(err){
+        res.status(404).send({isError:true,Msg:err})
+    }
+}
+
 module.exports={
     createAppointment,
     deleteAppointment,
     acceptAppointment,
     getAppointment,
     getAllAppointment,
-    getDocAppointment
+    getDocAppointment,
+    getAllSlots
 }
