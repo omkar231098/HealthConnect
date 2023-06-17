@@ -22,7 +22,7 @@ export default function AdminLogin(){
             name,
             password
         }
-        if(obj.name==="sak@admin" && obj.password === "12345"){
+        if(obj.name==="admin@healthconnect" && obj.password === "12345"){
             navigate("/allAdminData")
         }
         console.log(obj)

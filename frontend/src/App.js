@@ -36,7 +36,7 @@ function App() {
         />
         <Route path="/doctor" element={<TodaysSchedule />} />
         <Route path="/doctor/payment-history" element={<DocAppointments />} />
-        <Route path="/adminLogin" element={<AdminLogin />} />
+        {/* <Route path="/adminLogin" element={<AdminLogin />} /> */}
         <Route path="/allAdminData" element={<AllData />} />
         <Route path="/admin" element={<AdminPage />} />
       </Routes>
