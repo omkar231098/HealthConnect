@@ -7,6 +7,7 @@
   box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
   height: auto;
   align-items: center;
+  flex-direction: row;
 }
 
 .logo-navbar {
@@ -17,15 +18,17 @@
   width: auto;
   height: 100%;
   margin-left: 50px;
+  /* border: 1px solid red; */
 }
 
 .ButtonBox {
   display: flex;
   justify-content: flex-end;
   column-gap: 20px;
-  width: 80%;
+  width: auto;
   margin-right: 100px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  /* border: 1px solid red; */
 }
 
 .loginbtn {

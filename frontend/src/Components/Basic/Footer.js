@@ -20,7 +20,12 @@ return (
 <div className="Footer">
 
 <div className="contactbox">
-<h4 className="white-text"> <img src={ Address} alt="Address" className='Address'/>  Contact Us</h4>
+<div className="contactname">
+
+<div><img src={ Address} alt="Address" className='Address'/></div>
+<div><h4 className="white-text">   Contact Us</h4></div>
+</div>
+
 
                      <p className="grey-text">
                     Healthconnect+
@@ -37,14 +42,35 @@ return (
 </div>
 
 <div className="socialmediabox">
-<h4 className="white-text"> <img src={ Socialmedia} alt=" Socialmedia" className='Socialmedia'/>  Social Media</h4>
 
-                     <ul className="unlist">
-                         <li > <img src={ Facebook} alt="facebook" className='Facebook'/> <Link to="#!"className="grey-text"> Facebook</Link></li>
-                         <li> <img src={ Instagram } alt="insta" className='Instagram'/> <Link to="#!"className="grey-text"> Instagram</Link></li>
-                         <li> <img src={ Tweeter} alt="Tweeter" className='Tweeter'/><Link to="#!"className="grey-text"> Twitter</Link></li>
-                         <li> <img src={ GitHub} alt="GitHub" className='GitHub'/><Link to="https://github.com/omkar231098/rough-support-2269"className="grey-text"> GitHub</Link></li>
-                     </ul>
+<div className="contactname">
+
+   <div><img src={ Socialmedia} alt=" Socialmedia" className='Socialmedia'/></div>
+   <div><h4 className="white-text">   Social Media</h4></div>
+</div>
+<div className="contactname">
+
+<div><img src={ Facebook} alt="facebook" className='Facebook'/></div>
+<div><Link to="#!"className="grey-text"> Facebook</Link></div>
+</div>
+<div className="contactname">
+
+<div><img src={ Instagram } alt="insta" className='Instagram'/></div>
+<div> <Link to="#!"className="grey-text"> Instagram</Link></div>
+</div>
+<div className="contactname">
+
+<div><img src={ Tweeter} alt="Tweeter" className='Tweeter'/></div>
+<div><Link to="#!"className="grey-text"> Twitter</Link></div>
+</div>
+<div className="contactname">
+
+<div><img src={ GitHub} alt="GitHub" className='GitHub'/></div>
+<div><Link to="https://github.com/omkar231098/rough-support-2269"className="grey-text"> GitHub</Link></div>
+</div>
+
+
+                    
 
 
 

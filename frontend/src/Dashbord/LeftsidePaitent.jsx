@@ -19,14 +19,14 @@ const Leftside = () => {
               </Link>
             </li>
             <li>
-              <Link to="/patient/appointment-status">
-                <Option Value="Appointment Status" />
+              <Link to="/patient/createappointment">
+                <Option Value="Create Appointment" />
               </Link>
             </li>
     
             <li>
-              <Link to="/patient/previousappointments">
-                <Option Value="Previous Appointments" />
+              <Link to="/patient/appointments">
+                <Option Value="Appointments" />
               </Link>
             </li>
     
