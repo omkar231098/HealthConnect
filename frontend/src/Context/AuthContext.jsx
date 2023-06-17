@@ -9,16 +9,29 @@ const [email,setEmail] = useState("");
 const [refToken,setRefToken] = useState("");
 const [role,setRole]= useState("");
 const login = ()=>{
+    console.log("inside iogin");
     setIsAuth(true);
+    console.log(isAuth);
 }
-
+const setTokenTo = (prop)=>{
+    setToken(prop)
+}
+const setRefTokenTo = (prop)=>{
+    setRefToken(prop)
+}
+const setEmailTo = (prop)=>{
+    setEmail(prop)
+}
+const setRoleTo = (prop)=>{
+    setRole(prop)
+}
 const logout = ()=>{
     setIsAuth(false);
 };
 
 
 return (
-    <authContext.Provider value={{isAuth,login,logout,token,setToken,email,setEmail,refToken,setRefToken,role,setRole}}>
+    <authContext.Provider value={{isAuth,login,logout,token,setTokenTo,email,setEmailTo,refToken,setRefTokenTo,role,setRoleTo}}>
         {prop.children}
     </authContext.Provider>
 )

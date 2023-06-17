@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState,useContext } from "react";
 import "./Styles/Login.css"
 import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,10 +7,11 @@ import Logo from "../Images/Logo.jpeg"
 import facebook from "../Images/facebook.png"
 import google from "../Images/google.png"
 import github from "../Images/github.png"
-
+import {authContext} from "../Context/AuthContext"
 
 export default function Login() {
-
+  const {login,setTokenTo,setEmailTo,setRefTokenTo,setRoleTo} = useContext(authContext)
+  const [role,setRole] = useState("user");
   const navigate = useNavigate();
   const [values, setValues] = useState({ username: "", password: "" });
   const toastOptions = {
@@ -22,8 +22,24 @@ export default function Login() {
     theme: "dark",
   };
 
-  const handleChange = (event) => {
-    setValues({ ...values, [event.target.name]: event.target.value });
+  const onChangeEvent = (e)=>{
+    const value = e.target.value;
+    const name = e.target.name;
+
+    setValues((prv)=>{
+      if(name === "email"){
+        return {
+          email: value,
+          password:prv.password
+        }
+      }else if(name === "password"){
+        return {
+          email:prv.email,
+          password:value
+        };
+      }
+    })
+    
   };
 
   const validateForm = () => {
@@ -35,30 +51,43 @@ export default function Login() {
       toast.error("Email and Password is required.", toastOptions);
       return false;
     }
-    return true;
+    return true
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    validateForm()
+    let url = role == "user" ? "user/log" : "doctor/log"
     console.log(values)
     if (validateForm()) {
-      const { username, password } = values;
-      const { data } = await axios.post(`${process.env.REACT_APP_BASEURL}user/log`, {
-        username,
-        password,
-      });
-      if (data.isError === true) {
-        toast.error(data.msg, toastOptions);
-      }
-      if (data.isError === false) {
-        localStorage.setItem(
-          process.env.REACT_APP_LOCALHOST_KEY,
-          JSON.stringify(data.user)
-        );
-
-        navigate("/");
-      }
+      fetch(`${process.env.REACT_APP_HOST_URL}${url}`,{
+        method :"POST",
+        headers :{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body : JSON.stringify(values)
+      }).then((res)=> res.json()).then((res)=>{
+        console.log(res)
+        if(!res.isError){
+          console.log(res.Msg);
+          login()
+          setEmailTo(values.email);
+          setTokenTo(res.token);
+          setRefTokenTo(res.refreshToken)
+          setRoleTo(res.role)
+          if(res.role === 'user'){
+            navigate("/paitentDash")
+          }else{
+            navigate("/doctorDash")
+          }
+        }else{
+          console.log(res.Msg);
+          toast.error("Email and Password is Wrong.", toastOptions);
+        }
+      }).catch((err)=>{
+        console.log(err);
+        toast.error("Email and Password is Wrong.", toastOptions);
+      })
     }
   };
 
@@ -66,20 +95,24 @@ export default function Login() {
     <div className='login-container'>
     <form className='login-form' onSubmit={(event) => handleSubmit(event)}>
       <img src={Logo} alt="Logo" className='login-logo'/>
-    
-         <input
+      <select className='register-input' name="role" onChange={(e)=>{setRole(e.target.value)}}>
+            <option value="">Select Role</option>
+            <option value="doctor">Doctor</option>
+            <option value="user">Patient</option>
+        </select>
+        <input
           type="email"
           placeholder="Enter Email"
           name="email"
           className='login-input'
-          onChange={(e) => handleChange(e)}
+          onChange={onChangeEvent}
         />
-         <input
+        <input
           type="password"
           placeholder="Enter Password"
           name="password"
           className='login-input'
-          onChange={(e) => handleChange(e)}
+          onChange={onChangeEvent}
         />
         <button type="submit" className='login-btn'>Login</button>
         <span className='login-span'>
@@ -87,7 +120,6 @@ export default function Login() {
         </span>
         <div className='login-with'>
         <img src={google} alt="google" className='login-auth'/>
-        <img src={facebook} alt="facebook" className='login-auth' />
         <img src={github} alt="github" className='login-auth'/>
         </div>
     </form>

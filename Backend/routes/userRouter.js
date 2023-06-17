@@ -11,7 +11,7 @@ userRouter.use(express.json());
 
 //All the defined routes
 userRouter.get("/",tokenValidator,getAllUsers);
-userRouter.get("/find",tokenValidator,getUsers);
+userRouter.post("/find",tokenValidator,getUsers);
 userRouter.post("/reg",createUser);
 userRouter.post("/log",getToken);
 userRouter.patch("/:id",tokenValidator,authorization,updateUser);
