@@ -7,12 +7,14 @@ import PersonalDetails from "./pages/PaitentDash";
 import DoctorDashboard from "./pages/DoctorDash";
 
 import AdminLogin from "./Components/Admin/AdminLogin"
-import AllData from "./components/Admin/AllData"
+import AllData from "./Components/Admin/AllData"
 import AdminPage from "./pages/AdminPage"
 
-
-
 import PersonalDetailsDocter from "./pages/PersonalDetails";
+import SearchDoctor from "./pages/SearchDoctor";
+import Appointments from "./pages/Appointments";
+import CreateAppointment from "./pages/CreateAppointment";
+
 import TodaysSchedule from "./Components/TodaysSchedule";
 import DocAppointments from "./pages/PaymentHistory";
 
@@ -33,6 +35,11 @@ function App() {
             <Route path="/doctor/perosnaldetails" element ={<PersonalDetailsDocter />} />
             <Route path="/doctor" element ={<TodaysSchedule/>} />
             <Route path="/doctor/payment-history" element ={<DocAppointments/>} />
+
+            <Route path="/doctor/perosnaldetails" element ={<PersonalDetailsDocter />} />
+            <Route path="/patient/searchdoctor" element ={<SearchDoctor />} />
+            <Route path="/patient/appointments" element ={<Appointments />} />
+            <Route path="/patient/createappointment" element ={<CreateAppointment />} />
 
           </Routes>
     </div>

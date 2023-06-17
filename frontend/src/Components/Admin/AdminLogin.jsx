@@ -2,7 +2,7 @@ import { Box, Button, FormControl, FormLabel, Input,Heading,Center } from '@chak
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-export const AdminLogin = () => {
+export default function AdminLogin(){
 
     const [name,setname] = useState("")
     const [password,setpassword] = useState("")

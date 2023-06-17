@@ -2,10 +2,10 @@ import { Box,Text,Button } from '@chakra-ui/react'
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { getDoctor } from '../../redux/AdminReducer/action';
-import {useNavigate} from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom";
 
 
-export default function sidebar() {
+export default function Sidebar() {
     const navigate = useNavigate();
     
 return (
@@ -17,7 +17,7 @@ return (
                 bg={"two"}
                 color={"white"}
                 fontSize={20}
-                onClick={()=>navigate("/allAdminData")}>Dashboard</Button>
+                onClick={()=>{navigate("/allAdminData")}}>Dashboard</Button>
         <br />
             <Button 
                 w={'80%'}
@@ -26,7 +26,7 @@ return (
                 bg={"two"}
                 color={"white"}
                 fontSize={20}
-                onClick={()=>navigate("/admin")}>Doctors</Button>
+                onClick={()=>{navigate("/admin")}}>Doctors</Button>
         </Box>
     </Box>
   )

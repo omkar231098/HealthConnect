@@ -2,10 +2,10 @@ import React from 'react'
 import  Admin  from '../Components/Admin/AdminDash'
 // import { AddDoct } from '../components/Admin/AddDoct'
 import { Button,Box } from '@chakra-ui/react'
-import { Sidebar } from '../Components/Admin/sidebar'
+import  Sidebar  from '../Components/Admin/Sidebar'
 
 
-export const AdminPage = () => {
+export default function AdminPage(){
   
   return (
     < >

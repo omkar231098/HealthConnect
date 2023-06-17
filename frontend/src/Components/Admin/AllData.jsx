@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import { BarChart } from './BarChart'
 import { PieChartData } from './PieChartData'
-import { Sidebar } from './sidebar'
-import { Box,Heading,Text,Center} from '@chakra-ui/react'
+import Sidebar from './Sidebar'
+import { Box,Heading,Text,Center, withDefaultColorScheme} from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getDoctor, getPatient } from '../../redux/AdminReducer/action'
 import { StackbarCh } from './StackbarCh'
 
-export const AllData = () => {
+export default function AllData(){
   const data = useSelector((store)=>store.adminReducer.doctor)
   console.log(data)
 
@@ -100,3 +100,5 @@ export const AllData = () => {
     </>
   )
 }
+
+
