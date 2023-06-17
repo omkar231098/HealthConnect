@@ -10,10 +10,10 @@ export default function Admin(){
   const data=useSelector((store)=>{
     return store.adminReducer.doctor
   })
-  const patient = useSelector((store)=>{
-    return store.patientReducer.patients
-  })
-  console.log(patient)
+  // const patient = useSelector((store)=>{
+  //   return store.patientReducer.patients
+  // })
+  // console.log(patient)
 
   const dispatch = useDispatch();
 
