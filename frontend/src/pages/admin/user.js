@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
-
+import Admin from "../../Components/Admin/AdminDash";
+import axios from "axios";
+import { Table } from "antd";
 const Users = () => {
 const [users, setUsers] = useState([]);
 
@@ -51,10 +53,10 @@ const columns = [
 ];
 
 return (
-    <Layout>
+    <Admin>
         <h1 className="text-center m-2">Users List</h1>
         <Table columns={columns} dataSource={users}></Table>
-    </Layout>
+    </Admin>
        );
 };
 
