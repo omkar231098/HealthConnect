@@ -80,7 +80,7 @@ const getToken = async(req, res) => {
                 const refreshToken = await jwt.sign({name:oldUser.name,role:oldUser.role,email:oldUser.email},process.env.refreshSecretKey,{ expiresIn: "7d" });
                 res.cookie("token", Token);
                 res.cookie("refreshToken", refreshToken);
-                res.status(202).send({isError:false,Msg:"Login Success",token:Token,refreshToken:refreshToken});
+                res.status(202).send({isError:false,Msg:"Login Success",token:Token,refreshToken:refreshToken,role:oldUser.role});
             }else{
                 res.status(401).send({isError:true,Msg:"Wrong credentials"})
             }

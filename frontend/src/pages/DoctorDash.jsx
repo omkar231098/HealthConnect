@@ -4,16 +4,16 @@ import TodaysSchedule from "../Components/TodaysSchedule";
 import "../Dashbord/dash.css";
 import { authContext } from "../Context/AuthContext"
 import { Navigate } from "react-router-dom";
-
+import Navbar from "../Components/Basic/Navbar"
 const DoctorDashboard = () => {
-  const {  role} = useContext(authContext);
+  const {role} = useContext(authContext);
 
   if(role === "user"){
     return < Navigate to={"/"}/>
   }
   return (
     <div className="bg-dark" style={{ height: "100vh" }}>
-     
+    <Navbar />
       <div>
         <div className="row m-5" style={{ maxWidth: "100%" }}>
           <div
@@ -39,4 +39,3 @@ const DoctorDashboard = () => {
 };
 
 export default DoctorDashboard;
-// <Navbar />

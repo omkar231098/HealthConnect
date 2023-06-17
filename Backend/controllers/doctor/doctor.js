@@ -67,6 +67,7 @@ const deleteDoctor = async(req, res) => {
 }
 //can login in with providing password and email address
 const getTokenDoctor = async(req, res) => {
+    console.log(req.body);
     try{
         let olddoctor = await doctor.findOne({ where: { email: req.body.email } });
         console.log(olddoctor.password);
@@ -76,16 +77,17 @@ const getTokenDoctor = async(req, res) => {
             const isPassCorrect = await bcrypt.compare(req.body.password,olddoctor.password);
             console.log(isPassCorrect);
             if(isPassCorrect){
-                const Token = await jwt.sign({name:olddoctor.name,role:olddoctor.role,email:oldUser.email},process.env.secretKey,{ expiresIn: "1d" });
-                const refreshToken = await jwt.sign({name:olddoctor.name,role:olddoctor.role,email:oldUser.email},process.env.refreshSecretKey,{ expiresIn: "7d" });
+                const Token = await jwt.sign({name:olddoctor.name,role:olddoctor.role,email:olddoctor.email},process.env.secretKey,{ expiresIn: "1d" });
+                const refreshToken = await jwt.sign({name:olddoctor.name,role:olddoctor.role,email:olddoctor.email},process.env.refreshSecretKey,{ expiresIn: "7d" });
                 res.cookie("token", Token);
                 res.cookie("refreshToken", refreshToken);
-                res.status(202).send({isError:false,Msg:"Login Success",token:Token,refreshToken:refreshToken});
+                res.status(202).send({isError:false,Msg:"Login Success",token:Token,refreshToken:refreshToken,role:olddoctor.role});
             }else{
                 res.status(401).send({isError:true,Msg:"Wrong credentials"})
             }
         }
     }catch(err){
+        console.log(err);
         res.status(404).send({isError:true,Msg:err})
     }
 }
