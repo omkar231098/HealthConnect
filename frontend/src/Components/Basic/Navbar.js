@@ -2,8 +2,10 @@
 import "../Basic/Navbar.css"
 import Logo from "../../Images/Logo.jpeg"
 
+
 function Navbar (){
 
+   
 
 return (
 
@@ -18,7 +20,7 @@ return (
 
 
 <div className="ButtonBox">
-<div><button className="loginbtn">Login</button></div>
+<div><button  className="loginbtn">Login</button></div>
 <div><button  className="signinbtn">SignUp</button></div>
 </div>
 

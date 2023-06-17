@@ -14,27 +14,11 @@ import Leftside from "../Dashbord/LeftsideDoctor";
 import Footer from "../Components/Basic/Footer";
 const DocAppointments = () => {
 
-  //   console.log(decoded);
 
-//   const [Appointments, setAppointments] = useState([]);
 
-//   const fetchAppointments = async () => {
 
-//     var token = localStorage.getItem("token");
-//     var decoded = jwt_decode(token);
-//     const { data } = await Axios.post(
-//       `${process.env.REACT_APP_SERVER_URL}/doctors/previous-appointments/`,
-//       {
-//         doctorId: decoded._id,
-//       }
-//     );
-//     console.log(data);
-//     setAppointments(data);
-//   };
 
-//   useEffect(() => {
-//     fetchAppointments();
-//   }, []);
+  
 
   return (
     <div className="bg-dark" style={{ height: "100vh" }}>
@@ -93,3 +77,31 @@ const DocAppointments = () => {
 };
 
 export default DocAppointments;
+
+
+
+
+
+
+
+  //   console.log(decoded);
+
+//   const [Appointments, setAppointments] = useState([]);
+
+//   const fetchAppointments = async () => {
+
+//     var token = localStorage.getItem("token");
+//     var decoded = jwt_decode(token);
+//     const { data } = await Axios.post(
+//       `${process.env.REACT_APP_SERVER_URL}/doctors/previous-appointments/`,
+//       {
+//         doctorId: decoded._id,
+//       }
+//     );
+//     console.log(data);
+//     setAppointments(data);
+//   };
+
+//   useEffect(() => {
+//     fetchAppointments();
+//   }, []);
