@@ -35,7 +35,7 @@ return (
                 bg={"two"}
                 color={"black"}
                 fontSize={20}
-                onClick={()=>{navigate("/admin")}}>Patients</Button>
+                onClick={()=>{navigate("/userAdmin")}}>Users</Button>
         </Box>
     </Box>
   )

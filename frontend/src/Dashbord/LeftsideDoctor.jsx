@@ -9,7 +9,7 @@ const Leftside = () => {
     <div>
       <ul className="mt-5">
         <li>
-          <Link to="/doctor">
+          <Link to="/doctorDash">
             <Option Value="Today's Schedule" Option="today" />
           </Link>
         </li>

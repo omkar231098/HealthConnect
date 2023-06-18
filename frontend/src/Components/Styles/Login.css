@@ -61,8 +61,13 @@
 
 .login-auth{
     margin-left: 1%;
-    width: 15%;
+    width: 45%;
     cursor: pointer;
+   
+}
+
+#login-auth-facebook{
+  margin-left: -54%;
 }
 
 .login-image {
