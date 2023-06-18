@@ -14,6 +14,7 @@ import Appointments from "./pages/Appointments";
 import CreateAppointment from "./pages/CreateAppointment";
 import TodaysSchedule from "./Components/TodaysSchedule";
 import DocAppointments from "./pages/PaymentHistory";
+import AddDoctor from "./Components/Admin/AddDoct"
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         {/* <Route path="/adminLogin" element={<AdminLogin />} /> */}
         <Route path="/allAdminData" element={<AllData />} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="/doctorAdmin" element={<AddDoctor />} />
       </Routes>
     </div>
   );
