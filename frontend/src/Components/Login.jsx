@@ -77,12 +77,16 @@ export default function Login() {
           setRoleTo(res.role)
           if(res.role === 'user'){
             navigate("/paitentDash")
-          }else if(res.role === 'admin' || res.role === 'administrator'){
-            navigate("/admin")
-          }else{
+          }
+           else if (res.role === 'admin'){
+            navigate("/allAdminData")
+          }
+          else  {
             navigate("/doctorDash")
           }
-        }else{
+         
+        }
+        else{
           console.log(res.Msg);
           toast.error("Email and Password is Wrong.", toastOptions);
         }

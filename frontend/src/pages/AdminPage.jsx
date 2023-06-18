@@ -3,7 +3,7 @@ import  Admin  from '../Components/Admin/AdminDash'
 // import { AddDoct } from '../components/Admin/AddDoct'
 import { Button,Box } from '@chakra-ui/react'
 import  Sidebar  from '../Components/Admin/Sidebar'
-import Navbar from '../Components/Basic/Navbar'
+
 
 
 export default function AdminPage(){

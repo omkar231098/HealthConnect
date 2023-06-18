@@ -55,9 +55,8 @@ export const Dashboard = () => {
             <Thead>
               <Tr h="10">
                 <Th><Center fontSize={"15px"}>Sr.No</Center></Th>
-                <Th fontSize={"15px"}>Doctor Name</Th>
+                <Th fontSize={"15px"}>Name</Th>
                 <Th fontSize={"15px"}>profile</Th>
-                <Th fontSize={"15px"}>status</Th>
                 <Th fontSize={"15px"}>Edit</Th>
                 <Th fontSize={"15px"}>Delete</Th>
               </Tr>

@@ -3,7 +3,7 @@ import { ADD_DOCTOR_SUCC, DEL_DOCTOR_SUCC, EDIT_DOCTOR_FAIL, EDIT_DOCTOR_REQ, ED
 
 export const getDoctor = () => (dispatch) => {
     dispatch({type:GET_DOCTOR_REQ})
-    return axios.get("http://localhost:3000/doctors")
+    return axios.get("http://localhost:3000/doctor")
     .then((res)=>{
         console.log(res)
         return dispatch({type:GET_DOCTOR_SUCC,payload:res.data})
@@ -17,7 +17,7 @@ export const getDoctor = () => (dispatch) => {
 export const editDoc = (id) => (dispatch) => {
     dispatch({type:GET_DOCTOR_REQ})
     
-    return axios.delete(`http://localhost:3000/doctors/${id}`)
+    return axios.delete(`http://localhost:7890/doctor/${id}`)
     .then((res)=>{
         //console.log(res.data)
         dispatch({type:EDIT_DOCTOR_SUCC})
@@ -29,7 +29,7 @@ export const editDoc = (id) => (dispatch) => {
 
 export const delData = (id,status) => (dispatch) => {
     
-    return axios.patch(`http://localhost:3080/doctors/${id}`,{status:!status})
+    return axios.patch(`http://localhost:7890/doctors/${id}`,{status:!status})
     .then((resp)=>{
         console.log(resp.data)
         dispatch({type:DEL_DOCTOR_SUCC})
@@ -39,7 +39,7 @@ export const delData = (id,status) => (dispatch) => {
 
 export const addDoct = (obj) => (dispatch) => {
     dispatch({type:GET_DOCTOR_REQ})
-return axios.post("http://localhost:3080/doctors",obj)
+return axios.post("http://localhost:7890/doctor",obj)
 .then((res)=>{
     //console.log(res)
     return dispatch({type:ADD_DOCTOR_SUCC})
@@ -52,7 +52,7 @@ return axios.post("http://localhost:3080/doctors",obj)
 
 export const getPatient = () => (dispatch) => {
     dispatch({type:PATIENT_REQ})
-    return axios.get("http://localhost:3080/patients")
+    return axios.get("localhost:7890/user")
     .then((res)=>{
         console.log(res)
         return dispatch({type:PATIENT_SUCC,payload:res.data})
