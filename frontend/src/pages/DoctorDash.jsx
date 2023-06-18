@@ -5,6 +5,7 @@ import "../Dashbord/dash.css";
 import { authContext } from "../Context/AuthContext"
 import { Navigate } from "react-router-dom";
 import Navbar from "../Components/Basic/Navbar"
+import Footer from "../Components/Basic/Footer";
 const DoctorDashboard = () => {
   const {role} = useContext(authContext);
 
@@ -34,6 +35,7 @@ const DoctorDashboard = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

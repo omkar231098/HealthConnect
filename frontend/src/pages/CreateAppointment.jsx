@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import "../Components/Styles/Register.css";
 import LeftsidePaitent from "../Dashbord/LeftsidePaitent";
 import { Button } from "reactstrap";
-import {Link} from "react-router-dom"
+import Navbar from "../Components/Basic/Navbar"
+import {Link,useParams} from "react-router-dom"
 import Calendar from "react-calendar";
 import Slot from "./Slots";
 
-export default function CreateAppointment(props) {
-  const [date, setDate] = useState(new Date());
+export default function CreateAppointment() {
+  let { doctor } = useParams();
+  const [date, setDate] = useState("");
   const [showSlot, setShowSlot] = useState(false);
   const [info,setInfo] = useState({
     email:"",
     bookDate:date,
-    status:false,
-    doctorEmail:props.location.doctor.doctor,
+    status:"notAccpeted",
+    doctorEmail:doctor,
     phoneNumber:0,
     patientName:"",
     symptoms:""
@@ -66,21 +68,27 @@ export default function CreateAppointment(props) {
     })
   };
   const onChange = (date) => {
-    setDate(date);
-    setShowSlot(true);
+    console.log(date,"this is set date");
+    const dateFormated = new Date(date);
+    const formattedDate = dateFormated.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    }).replace(/\//g, "-");
+    let newDate = formattedDate.split("-").reverse().join("-");
+    setDate(newDate);
   };
   var pervious = new Date();
   pervious.setDate(pervious.getDate() - 1);
 
   return (
     <div className="bg-dark" style={{ height: "100vh" }}>
-      <h2>Navbar</h2>
+    <Navbar />
       <div>
-        <div className="row m-5" style={{ maxWidth: "100%" }}>
+        <div className="row m-5" style={{ maxWidth: "100%"}}>
           <div className="col-3 col-md-3 p-4 bg-white ">
             <LeftsidePaitent />
           </div>
-          <div className="Register-container">
             <div
               className="col-9 col-md-9 p-4"
               style={{
@@ -89,8 +97,11 @@ export default function CreateAppointment(props) {
                 backgroundColor: "#6c757d",
               }}
             >
-              <div>
+              <div >
                 <input
+                style={{
+                  backgroundColor: "#ffffff",
+                }}
                   type="text"
                   placeholder="Enter Your email"
                   name="email"
@@ -98,6 +109,9 @@ export default function CreateAppointment(props) {
                   onChange={onChangeEventUser}
                 />
                 <input
+                style={{
+                  backgroundColor: "#ffffff",
+                }}
                   type="number"
                   placeholder="Enter Your Number"
                   name="phoneNumber"
@@ -105,6 +119,9 @@ export default function CreateAppointment(props) {
                   onChange={onChangeEventUser}
                 />
                 <input
+                style={{
+                  backgroundColor: "#ffffff",
+                }}
                   type="text"
                   placeholder="Enter Your Name"
                   name="patientName"
@@ -112,6 +129,9 @@ export default function CreateAppointment(props) {
                   onChange={onChangeEventUser}
                 />
                 <input
+                style={{
+                  backgroundColor: "#ffffff",
+                }}
                   type="text"
                   placeholder="Enter Your symptoms"
                   name="symptoms"
@@ -119,76 +139,38 @@ export default function CreateAppointment(props) {
                   onChange={onChangeEventUser}
                 />
               </div>
-            </div>
-          </div>
-          <div
-            className="col-9 col-md-9 p-4"
-            style={{
-              border: "15px solid yellow ",
-              height: "80vh",
-              backgroundColor: "#6c757d",
-            }}
-          >
-            <div className="d-flex justify-content-center">
-              {/* <ReactCalendar /> */}
               <div>
-                <Calendar
-                  tileDisabled={({ date }) =>
-                    date.getDay() === 0 || date < pervious
-                  }
-                  onChange={onChange}
-                  value={date}
-                />
-                {console.log(date)}
-                <p class="text-center">
-                  {date.getFullYear().toString() +
-                    "-" +
-                    (date.getMonth() + 1).toString() +
-                    "-" +
-                    date.getDate().toString()}
-                </p>
-              </div>
-            </div>
-            {/* <Row className="w-100">
-            <Col> */}
-            <div className="row justify-content-center mt-5 ml-5">
+              <Calendar
+                tileDisabled={({ date }) =>
+                  date.getDay() === 0 || date < pervious
+                }
+                onChange={onChange}
+                value={date}
+              />
+              {console.log(date)}
+                <div className="row justify-content-center mt-5 ml-5">
               <div className="col-2">
-                <Link to="/patient/searchdoctor">
+                <Link to="/paitentDash">
                   <Button color="danger">GO BACK</Button>
                 </Link>
               </div>
-              {/* </Col>
-            <Col> */}
               <div className="col-4">
-                <Button color="primary">Confirm And Go to Next Step</Button>
+                <Button color="primary" onClick={()=>{
+                  console.log(date.length);
+                  if(date.length > 11){
+                    alert("Please select date")
+                  }else{
+                    setShowSlot(true)
+                  }
+                }}>Confirm And Go to Next Step</Button>
               </div>
-              {/* </Col>
-          </Row> */}
+              </div>
             </div>
+            </div>
+            <div>{showSlot ? <Slot info= {info} date={date} /> : null}</div>
           </div>
-          <div>{showSlot ? <Slot info= {info}  /> : null}</div>
+          
         </div>
       </div>
-    </div>
   );
 }
-
-// {cars
-//   .map((car) => (
-//     <div key={car.id}>
-//       <img src={car.image} alt={car.brand} />
-//       <h2>{car.brand}</h2>
-//       <p>{car.model}</p>
-//       <p>Year: {car.year}</p>
-//       <button>Book Now</button>
-//     </div>
-//   ))}
-
-// email:{type:String,required:true},
-//     bookDate:{type:String,required:true},
-//     bookTimeSlot:{type:Number,Enum:[1,2,3,4,5],required:true},
-//     status:{type:Boolean,default:false,required:true},
-//     doctorEmail:{type:String,required:true},
-//     phoneNumber:{type:Number,required:true},
-//     patientName:{type:String,required:true},
-//     symptoms:{type:String,required:true}

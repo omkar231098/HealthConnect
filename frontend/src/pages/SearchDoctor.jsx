@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import LeftsidePaitent from "../Dashbord/LeftsidePaitent"
 import {authContext} from "../Context/AuthContext";
 import { Navigate,Link } from 'react-router-dom';
+import Navbar from '../Components/Basic/Navbar'
 
 export default function SearchDoctor() {
   const [doctor,setDoctor] = useState([]);
@@ -33,7 +34,7 @@ export default function SearchDoctor() {
   }
   return (
     <div className="bg-dark" style={{ height: "100vh" }}>
-    <h2>Navbar</h2>
+    <Navbar />
     <div>
       <div className="row m-5" style={{ maxWidth: "100%" }}>
         <div className="col-3 col-md-3 p-4 bg-white ">
@@ -62,7 +63,7 @@ export default function SearchDoctor() {
                 <div
                   className=" col align-self-end col-md-2 offset-md-3 inline"
                   style={{ textAlign: "center" }}>
-                  <Link to={{ pathname: "/patient/createappointment", doctor: { doctor: ele.email } }}>
+                  <Link to={`/patient/createappointment/${ele.email}`} >
                   <button className="btn btn-sm btn-primary">Book</button> </Link>
                 </div>
               </div>

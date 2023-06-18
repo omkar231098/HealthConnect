@@ -15,7 +15,8 @@ return (
                 w={'80%'}
                 m={4}
                 bg={"two"}
-                color={"white"}
+                color={"black"}
+                hoverBg={"blue"}
                 fontSize={20}
                 onClick={()=>{navigate("/allAdminData")}}>Dashboard</Button>
         <br />
@@ -24,9 +25,17 @@ return (
                 ml={'15px'}
                 mb={4}
                 bg={"two"}
-                color={"white"}
+                color={"black"}
                 fontSize={20}
                 onClick={()=>{navigate("/admin")}}>Doctors</Button>
+            <Button 
+                w={'80%'}
+                ml={'15px'}
+                mb={4}
+                bg={"two"}
+                color={"black"}
+                fontSize={20}
+                onClick={()=>{navigate("/userAdmin")}}>Users</Button>
         </Box>
     </Box>
   )

@@ -196,7 +196,9 @@ export default function Register() {
   return (
     <div className='Register-container'>
       <form className='register-form' onSubmit={(event) => handleSubmit(event)}>
-        <img src={Logo} alt="Logo" className='register-logo'/>
+        <img src={Logo} alt="Logo" className='register-logo' onClick={()=>{
+          navigate("/")
+        }}/>
         <select className='register-input' name="role" onChange={(e)=>{setRole(e.target.value)}}>
             <option value="">Select Role</option>
             <option value="doctor">Doctor</option>

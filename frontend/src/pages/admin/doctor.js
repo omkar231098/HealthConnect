@@ -1,69 +1,84 @@
-import React, { useState, useEffect } from "react";
-import Admin from "../../Components/Admin/AdminDash";
-import axios from "axios";
-import { Table } from "antd";
+import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import Loading from './Loading'
 
-const Doctors = () => {
-  const [doctors, setDoctors] = useState([]);
-  //getUsers
-  const getDoctors = async () => {
-    try {
-      const res = await axios.get("/doctor/getAllDoctors", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      if (res.data.success) {
-        setDoctors(res.data.data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getDoctors();
-  }, []);
+import axios from 'axios'
 
-  const columns = [
-    {
-      title: "Name",
-      dataIndex: "name",
-      render: (text, record) => (
-        <span>
-          {record.name}
-        </span>
-      ),
-    },
-    {
-      title: "Status",
-      dataIndex: "status",
-    },
-    {
-      title: "phone",
-      dataIndex: "phone",
-    },
-    {
-      title: "Actions",
-      dataIndex: "actions",
-      render: (text, record) => (
-        <div className="d-flex">
-          {record.status === "pending" ? (
-            <button className="btn btn-success">Approve</button>
-          ) : (
-            <button className="btn btn-danger">Reject</button>
-          )}
+function Doctor() {
+    // const {token} = useContext(authContext)
+    const [loading, setLoading] = useState([])
+    const [doctor, setDoctor] = useState([])
+    useEffect(() => {
+        axios.get(`http://localhost:7890/doctor`,{
+            headers: {
+                Authorization: `Bearer `
+              }
+        }).then(res => {
+            console.log(res)
+            setUsers(res.data.doctor);
+            // setLoading(false)
+        });
+    }, [])
+
+    // if(loading){
+    //     return (
+    //         <div>
+    //            <Loading />
+    //         </div>
+    //     )
+    // }
+
+
+
+    var doctorDetails = "";
+    doctorDetails = doctor.map((item, index) => {
+        return (
+            <tr key={index}>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>{item.email}</td>
+                <td>{item.phone}</td>
+                <td>
+                    <Link to="/" className='btn btn-success'>Edit</Link>
+                </td>
+                <td>
+                    <Link to="/" className='btn btn-danger'>Delete</Link>
+                </td>
+
+            </tr>
+        )
+    })
+
+
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col-md-12">
+                    <div className="card">
+                        <div className="card-header">
+                            <h4>Users List</h4>
+                        </div>
+                        <div className="card-body">
+                            <table className='table table-striped'>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {userDetails}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      ),
-    },
-  ];
-
-  return (
-    <Admin>
-      <h1 className="text-center m-3">All Doctors</h1>
-      <Table columns={columns} dataSource={doctors} />
-    </Admin>
-  );
-};
-
-export default Doctors;
-           
+    )
+}
+export default User;
