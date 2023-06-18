@@ -1,22 +1,37 @@
 import { Link } from 'react-router-dom'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Loading from './Loading'
+import {authContext} from "../../Context/AuthContext";
+
 
 import axios from 'axios'
 
 function User() {
-    // const {token} = useContext(authContext)
+
+    const {isAuth,token,email,refToken,role} = useContext(authContext)
     const [loading, setLoading] = useState([])
     const [users, setUsers] = useState([])
     useEffect(() => {
-        axios.get(`http://localhost:7890/user`,{
+        fetch(`${process.env.REACT_APP_HOST_URL}user/`,{
+            method: 'GET',
             headers: {
-                Authorization: `Bearer `
-              }
-        }).then(res => {
-            console.log(res)
-            setUsers(res.data.users);
-            // setLoading(false)
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'authorization':`Bearer ${token}`,
+                'refresh':`Bearer ${refToken}`
+            },
+            
+        }).then((res)=> res.json()).then((res)=>{
+            if(res.isError){
+              alert("Something went wrong Please try again")
+            
+            }else{
+                console.log(res)
+             setUsers(res.Msg)
+            }
+        })
+        .catch((err)=>{
+          console.log(err);
         });
     }, [])
 
@@ -33,6 +48,7 @@ function User() {
     var userDetails = "";
     userDetails = users.map((item, index) => {
         return (
+
             <tr key={index}>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
@@ -52,6 +68,7 @@ function User() {
 
     return (
         <div className="container">
+            
             <div className="row">
                 <div className="col-md-12">
                     <div className="card">
