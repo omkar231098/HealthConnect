@@ -76,9 +76,9 @@ POST  /login
 <div align = "center">  
   
  
-[FRONTEND]()
+[DEPLOYED FRONTEND]()
 
-[BACKEND]()
+[DEPLOYED BACKEND]()
 
  
 | `Authors` |
