@@ -20,7 +20,6 @@ app.use(cors({
 }))
 
 //Http server
-const httpServer =  http.createServer(app);
 
 //All the routes statements below
 app.use("/user",userRouter);
@@ -28,20 +27,7 @@ app.use("/doctor",doctorRouter);
 app.use("/appoint",appointmentRouter);
 
 //Web socket server
-const io = new Server(httpServer , {
-    cors : {
-        origin : '*'
-    }
-})
 
-//Io socket server
-io.on('connection', (socket) => {
-    console.log("new user connected",socket.id);
-    socket.on('join-room' , (data) => {
-    })
-    socket.on("chat",async(data)=>{
-})
-})
 
 //Siple get method statements
 app.get("/",(req,res)=>{
@@ -51,7 +37,7 @@ app.get("/",(req,res)=>{
 
 //All the databases statements below
 db.sequelize.sync().then(()=>{
-    httpServer.listen(process.env.PORT , async() => {
+    app.listen(process.env.PORT , async() => {
         try {
             await connection;
             console.log(`connected to DB`);
