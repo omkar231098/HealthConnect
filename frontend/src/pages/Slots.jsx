@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import {authContext} from "../Context/AuthContext";
 
-function Slot({info}){
+function Slot({info,date}){
     const {token,refToken} = useContext(authContext)
     const toastOptions = {
         position: "bottom-right",
@@ -54,6 +54,9 @@ function Slot({info}){
 
     function submitBook(s){
         info.bookTimeSlot = s
+        info.bookDate = date
+        console.log(info);
+
         fetch(`${process.env.REACT_APP_HOST_URL}appoint/create`,{
             method :"POST",
             headers :{
@@ -92,7 +95,7 @@ function Slot({info}){
                   <th scope="col">Booking Status</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody style={{color:"white"}}>
                 {availableSlots.map((slot,i) => (
                   <tr key={i}>
                     <th scope="row">{slot.time}</th>
