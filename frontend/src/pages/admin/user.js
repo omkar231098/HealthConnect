@@ -1,63 +1,84 @@
-import React, {useEffect, useState} from "react";
-import Admin from "../../Components/Admin/AdminDash";
-import axios from "axios";
-import { Table } from "antd";
-const Users = () => {
-const [users, setUsers] = useState([]);
+import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import Loading from './Loading'
 
-// getUsers
+import axios from 'axios'
 
-const getUsers = async () => {
-    try {
-        const res = await axios.get("/user.getAllUsers", {
+function User() {
+    // const {token} = useContext(authContext)
+    const [loading, setLoading] = useState([])
+    const [users, setUsers] = useState([])
+    useEffect(() => {
+        axios.get(`http://localhost:7890/user`,{
             headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
+                Authorization: `Bearer `
+              }
+        }).then(res => {
+            console.log(res)
+            setUsers(res.data.users);
+            // setLoading(false)
         });
-        
-    }
-    catch(error){
-console.log(error);
-    }
-};
-useEffect(()=> {
-    getUsers();
-}, []);
+    }, [])
 
-// column
+    // if(loading){
+    //     return (
+    //         <div>
+    //            <Loading />
+    //         </div>
+    //     )
+    // }
 
-const columns = [
-    {
-        title: "Name",
-        dataIndex: "name",
-    },
-    {
-        title: "Email",
-        dataIndex: "email",
-    },
-    {
-        title: "isDoctor",
-        dataIndex: "isDoctor",
-        render: (text, record) => <span>{record.isDoctor}</span>
-    },
-    {
-        title: "Actions",
-        dataIndex: "actions",
-        render: (text,record)=> (
-            <div className="d-flex">
-                <button className="btn btn-danger">Block</button>
+
+
+    var userDetails = "";
+    userDetails = users.map((item, index) => {
+        return (
+            <tr key={index}>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>{item.email}</td>
+                <td>{item.phone}</td>
+                <td>
+                    <Link to="/" className='btn btn-success'>Edit</Link>
+                </td>
+                <td>
+                    <Link to="/" className='btn btn-danger'>Delete</Link>
+                </td>
+
+            </tr>
+        )
+    })
+
+
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col-md-12">
+                    <div className="card">
+                        <div className="card-header">
+                            <h4>Users List</h4>
+                        </div>
+                        <div className="card-body">
+                            <table className='table table-striped'>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {userDetails}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-        ),
-    },
-
-];
-
-return (
-    <Admin>
-        <h1 className="text-center m-2">Users List</h1>
-        <Table columns={columns} dataSource={users}></Table>
-    </Admin>
-       );
-};
-
-export default Users;
+        </div>
+    )
+}
+export default User;
