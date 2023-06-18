@@ -18,13 +18,14 @@ const createAppointment = async(req,res)=>{
                 bookTimeSlot:req.body.bookTimeSlot
             });
             await newDoctor.save();
-            const isSended = await bookingEmail(req.body.email,req.body.bookDate,req.body.bookTimeSlot);
-            console.log(isSended);
-            if(isSended) {
-                res.status(202).send({isError:false,Msg:`New appointment Created successfully`})
-            }else{
-                res.status(500).send({isError:true,Msg:"SendGrid Error"});
-            }
+            // const isSended = await bookingEmail(req.body.email,req.body.bookDate,req.body.bookTimeSlot);
+            // console.log(isSended);
+            // if(isSended) {
+            //     res.status(202).send({isError:false,Msg:`New appointment Created successfully`})
+            // }else{
+            //     res.status(500).send({isError:true,Msg:"SendGrid Error"});
+            // }
+            res.status(202).send({isError:false,Msg:`New appointment Created successfully`})
         }
     }catch(err){
         res.status(404).send({isError:true,Msg:err})
@@ -34,8 +35,8 @@ const createAppointment = async(req,res)=>{
 const deleteAppointment = async(req,res)=>{
     try{
         await appointmentsModel.findOneAndDelete({_id:req.params.id})
-        const isSended = await cancelEmail(req.body.email,req.body.bookDate,req.body.bookTimeSlot);
-        console.log(isSended);
+        // const isSended = await cancelEmail(req.body.email,req.body.bookDate,req.body.bookTimeSlot);
+        // console.log(isSended);
         // if(isSended) {
         //     res.status(202).send({isError:false,Msg:`Appointment Deleted successfully`})
         // }else{
