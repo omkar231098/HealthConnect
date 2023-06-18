@@ -18,6 +18,7 @@ passport.use(
                 password: uuidv4(),
                 avtar: profile._json.picture,
             };
+            console.log(user);
             return cb(null, user);
         }
     )

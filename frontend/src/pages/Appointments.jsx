@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react'
 import LeftsidePaitent from "../Dashbord/LeftsidePaitent"
 import { Navigate,Link } from 'react-router-dom';
+import Navbar from "../Components/Basic/Navbar"
 import {authContext} from "../Context/AuthContext";
-import  Navbar from '../Components/Basic/Navbar';
-
 
 
 export default function Appointments() {
     const [doctor,setDoctor] = useState([]);
     const [isLoading, setIsLoading] = useState()
-    const [filteredAppointments, setFilteredAppointments] = useState()
     const {isAuth,token,refToken,role} = useContext(authContext)
 
 
@@ -40,7 +38,7 @@ export default function Appointments() {
       }
     return (
         <div className="bg-dark" style={{ height: "100vh" }}>
-        <h2>Navbar</h2>
+        <Navbar />
         <div>
           <div className="row m-5" style={{ maxWidth: "100%" }}>
             <div className="col-3 col-md-3 p-4 bg-white ">

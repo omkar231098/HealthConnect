@@ -1,9 +1,11 @@
 import { useEffect,useState,useContext } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import {authContext} from "../Context/AuthContext";
 
 function Slot({info,date}){
+  const navigate = useNavigate();
     const {token,refToken} = useContext(authContext)
     const toastOptions = {
         position: "bottom-right",
@@ -70,6 +72,7 @@ function Slot({info,date}){
             console.log(res)
             if(!res.isError){
               console.log(res.Msg);
+              navigate("/patient/appointments")
             }else{
               console.log(res.Msg);
               toast.error("Something went wrong please try again.", toastOptions);
@@ -80,14 +83,6 @@ function Slot({info,date}){
           })
     }
     return (
-        <div
-            className="col-9 col-md-9 p-4"
-            style={{
-              border: "15px solid yellow ",
-              height: "80vh",
-              backgroundColor: "#6c757d",
-            }}
-          >
             <table className="table table-hover table-dark">
               <thead>
                 <tr>
@@ -98,7 +93,7 @@ function Slot({info,date}){
               <tbody style={{color:"white"}}>
                 {availableSlots.map((slot,i) => (
                   <tr key={i}>
-                    <th scope="row">{slot.time}</th>
+                    <th scope="row">{slot.bookTimeSlot}</th>
                       <td>
                         <button onClick={()=>{
                             submitBook(slot.bookTimeSlot)
@@ -108,7 +103,6 @@ function Slot({info,date}){
                 ))}
               </tbody>
             </table>
-          </div>
     )
 }
 

@@ -3,13 +3,16 @@ const {user} = require("../../models/index");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const validateUserGoogle = async (req, res) => {
-    let oldUser = await user.findAll({ where: { email: req.body.email } });
+  console.log(req.user,"inside");
+    let oldUser = await user.findAll({ where: { email: req.user.email } });
     if(oldUser){
         const Token = await jwt.sign({name:oldUser.name,role:oldUser.role,email:oldUser.email},process.env.secretKey,{ expiresIn: "1d" });
         const refreshToken = await jwt.sign({name:oldUser.name,role:oldUser.role,email:oldUser.email},process.env.refreshSecretKey,{ expiresIn: "7d" });
         res.cookie("token", Token);
         res.cookie("refreshToken", refreshToken);
+        res.redirect("http://localhost:3000/")
         res.status(202).send({isError:false,Msg:"Login Success",token:Token,refreshToken:refreshToken});
+        
     } else {
         req.user.password = bcrypt.hashSync(req.user.password, 2);
         let newUser = await user.create({
@@ -19,7 +22,10 @@ const validateUserGoogle = async (req, res) => {
         const refreshToken = await jwt.sign({name:user.name,role:user.role,email:user.email},process.env.refreshSecretKey,{ expiresIn: "7d" });
         res.cookie("token", Token);
         res.cookie("refreshToken", refreshToken);
+        
         res.status(202).send({isError:false,Msg:"Login Success",token:Token,refreshToken:refreshToken});
+        res.redirect("http://localhost:3000/")
+        
     }
 };
 
