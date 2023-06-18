@@ -14,7 +14,7 @@ export default function CreateAppointment() {
   const [info,setInfo] = useState({
     email:"",
     bookDate:date,
-    status:false,
+    status:"notAccpeted",
     doctorEmail:doctor,
     phoneNumber:0,
     patientName:"",
