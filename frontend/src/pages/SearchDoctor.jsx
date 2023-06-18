@@ -63,7 +63,7 @@ export default function SearchDoctor() {
                 <div
                   className=" col align-self-end col-md-2 offset-md-3 inline"
                   style={{ textAlign: "center" }}>
-                  <Link to={{ pathname: "/patient/createappointment", doctor: { doctor: ele.email } }}>
+                  <Link to={`/patient/createappointment/${ele.email}`} >
                   <button className="btn btn-sm btn-primary">Book</button> </Link>
                 </div>
               </div>
