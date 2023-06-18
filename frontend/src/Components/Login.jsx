@@ -77,6 +77,8 @@ export default function Login() {
           setRoleTo(res.role)
           if(res.role === 'user'){
             navigate("/paitentDash")
+          }else if(res.role === 'admin' || res.role === 'administrator'){
+            navigate("/admin")
           }else{
             navigate("/doctorDash")
           }
@@ -94,7 +96,9 @@ export default function Login() {
   return (
     <div className='login-container'>
     <form className='login-form' onSubmit={(event) => handleSubmit(event)}>
-      <img src={Logo} alt="Logo" className='login-logo'/>
+      <img src={Logo} alt="Logo" className='login-logo' onClick={()=>{
+        navigate("/")
+      }}/>
       <select className='register-input' name="role" onChange={(e)=>{setRole(e.target.value)}}>
             <option value="">Select Role</option>
             <option value="doctor">Doctor</option>
@@ -119,8 +123,8 @@ export default function Login() {
           Don't have an account ?<Link to="/register" className="register-link"> Register</Link>
         </span>
         <div className='login-with'>
-        <img src={google} alt="google" className='login-auth'/>
-        <img src={github} alt="github" className='login-auth'/>
+        <a href="http://localhost:7890/user/auth/google"><img src={google} alt="google" className='login-auth'/></a>
+        <a href="http://localhost:7890/user/auth/github"><img src={github} alt="github" className='login-auth'/></a>
         </div>
     </form>
     <div>

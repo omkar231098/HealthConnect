@@ -7,14 +7,11 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Basic/Navbar"
 const PersonalDetails = () => {
   const navigate = useNavigate();
-  const {token,email,refToken,role} = useContext(authContext)
+  const {isAuth,token,email,refToken,role} = useContext(authContext)
   const [patient, setPatient] = useState({});
   const [loading, setLoading] = useState(false);
-
-
+  
   useEffect(() => {
-
-    console.log(JSON.stringify({email:email}));
     fetch(`${process.env.REACT_APP_HOST_URL}user/find`,{
         method: 'POST',
         headers: {
@@ -27,7 +24,9 @@ const PersonalDetails = () => {
     }).then((res)=> res.json()).then((res)=>{
         if(res.isError){
           alert("Something went wrong Please try again")
-          navigate("/")
+          if(!isAuth){
+            return navigate("/login")
+          }
         }else{
           console.log(res);
           console.log(res.Msg);
@@ -39,9 +38,11 @@ const PersonalDetails = () => {
       console.log(err);
     });
   }, []);
-  if(role === "doctor"){
+
+  if(role === 'doctor'){
     return navigate("/")
   }
+  
   return (
     
     <div className="bg-dark" style={{ height: "100vh" }}>

@@ -41,6 +41,7 @@ function App() {
         <Route path="/allAdminData" element={<AllData />} />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/patient/createappointment/:doctor" element ={<CreateAppointment />} />
+        <Route path='/externalGit' component={() => { window.location = `${process.env.REACT_APP_HOST_URL}user/auth/github`; return null;} }/>
       </Routes>
     </div>
   );
