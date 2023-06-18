@@ -78,7 +78,7 @@ export default function Login() {
           if(res.role === 'user'){
             navigate("/paitentDash")
           }
-           else if (res.role === 'admin'){
+           else if (res.role === 'admin' || res.role === 'administrator'){
             navigate("/allAdminData")
           }
           else  {
