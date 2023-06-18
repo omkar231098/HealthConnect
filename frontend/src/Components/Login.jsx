@@ -128,7 +128,7 @@ export default function Login() {
         </span>
         <div className='login-with'>
         <a href="http://localhost:7890/user/auth/google"><img src={google} alt="google" className='login-auth'/></a>
-        <a href="http://localhost:7890/user/auth/github"><img src={github} alt="github" className='login-auth'/></a>
+        <a href="http://localhost:7890/user/auth/github"><img src={github} alt="github" className='login-auth' id="login-auth-facebook"/></a>
         </div>
     </form>
     <div>
