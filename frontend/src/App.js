@@ -33,7 +33,7 @@ function App() {
         <Route path="/patient/searchdoctor" element={<SearchDoctor />} />
         <Route path="/patient/appointments" element={<Appointments />} />
         <Route
-          path="/patient/createappointment"
+          path="/patient/createappointment/:doctor"
           element={<CreateAppointment />}
         />
         <Route path="/doctor" element={<TodaysSchedule />} />

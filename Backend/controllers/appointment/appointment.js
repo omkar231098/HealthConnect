@@ -6,10 +6,11 @@ const {cancelEmail} = require("../../utils/bookingCancel");
 const createAppointment = async(req,res)=>{
     try{
         const alreadyBooked = await doctorScheduleModel.findOne({$and:[{doctorEmail:req.body.doctorEmail},{bookDate:req.body.bookDate},{bookTimeSlot:req.body.bookTimeSlot}]})
-
+console.log(alreadyBooked)
         if(alreadyBooked){
             res.status(403).send({isError:true,Msg:`Doctor is already in booked for this time slot`})
         }else{
+            console.log(req.body)
             let newAppointment = new appointmentsModel(req.body);
             await newAppointment.save();
             let newDoctor = new doctorScheduleModel({
