@@ -5,7 +5,7 @@ const TodaysSchedule = () => {
   const { token,email,refToken } = useContext(authContext);
   useEffect(() => {
     fetch(`${process.env.REACT_APP_HOST_URL}appoint/doc`,{
-        method: 'GET',
+        method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -14,12 +14,13 @@ const TodaysSchedule = () => {
         },
         body:JSON.stringify({doctorEmail:email})
     }).then((res)=> res.json()).then((res)=>{
+      console.log(res)
         if(!res.isError){
             setAppointments(res.Msg)
         }
     })
     .catch((err)=>{console.log(err)});
-  }, [email,refToken,token]);
+  }, []);
 
   return (
     <table className="table table-hover table-dark">

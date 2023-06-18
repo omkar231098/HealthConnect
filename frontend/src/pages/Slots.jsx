@@ -1,9 +1,11 @@
 import { useEffect,useState,useContext } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import {authContext} from "../Context/AuthContext";
 
-function Slot({info}){
+function Slot({info,date}){
+  const navigate = useNavigate();
     const {token,refToken} = useContext(authContext)
     const toastOptions = {
         position: "bottom-right",
@@ -54,6 +56,9 @@ function Slot({info}){
 
     function submitBook(s){
         info.bookTimeSlot = s
+        info.bookDate = date
+        console.log(info);
+
         fetch(`${process.env.REACT_APP_HOST_URL}appoint/create`,{
             method :"POST",
             headers :{
@@ -67,6 +72,7 @@ function Slot({info}){
             console.log(res)
             if(!res.isError){
               console.log(res.Msg);
+              navigate("/patient/appointments")
             }else{
               console.log(res.Msg);
               toast.error("Something went wrong please try again.", toastOptions);
@@ -77,14 +83,6 @@ function Slot({info}){
           })
     }
     return (
-        <div
-            className="col-9 col-md-9 p-4"
-            style={{
-              border: "15px solid yellow ",
-              height: "80vh",
-              backgroundColor: "#6c757d",
-            }}
-          >
             <table className="table table-hover table-dark">
               <thead>
                 <tr>
@@ -92,10 +90,10 @@ function Slot({info}){
                   <th scope="col">Booking Status</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody style={{color:"white"}}>
                 {availableSlots.map((slot,i) => (
                   <tr key={i}>
-                    <th scope="row">{slot.time}</th>
+                    <th scope="row">{slot.bookTimeSlot}</th>
                       <td>
                         <button onClick={()=>{
                             submitBook(slot.bookTimeSlot)
@@ -105,7 +103,6 @@ function Slot({info}){
                 ))}
               </tbody>
             </table>
-          </div>
     )
 }
 

@@ -10,7 +10,7 @@ appointmentRouter.use(express.json());
 //All the defined routes
 appointmentRouter.get("/",tokenValidator,getAppointment);
 appointmentRouter.get("/find",tokenValidator,authorization,getAllAppointment);
-appointmentRouter.get("/doc",tokenValidator,authorization,getDocAppointment);
+appointmentRouter.post("/doc",tokenValidator,getDocAppointment);
 appointmentRouter.post("/create",tokenValidator,createAppointment);
 appointmentRouter.post("/accept",tokenValidator,acceptAppointment);
 appointmentRouter.post("/getSlots",tokenValidator,getAllSlots);

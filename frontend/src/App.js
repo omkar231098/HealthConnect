@@ -6,6 +6,7 @@ import PersonalDetails from "./pages/PaitentDash";
 import DoctorDashboard from "./pages/DoctorDash";
 import AdminLogin from "./Components/Admin/AdminLogin";
 import AllData from "./Components/Admin/AllData";
+import Slot from "./pages/Slots"
 import AdminPage from "./pages/AdminPage";
 import PersonalDetailsDocter from "./pages/PersonalDetails";
 import Home from "./Components/Home/Home/Home";
