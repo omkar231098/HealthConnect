@@ -34,9 +34,11 @@ const getAllDoctors = async(req, res) =>{
 }
 //can find specific doctor by providing email address in params
 const getDoctors = async(req, res) =>{
+    console.log(req.params.id,"inside");
     try{
-        console.log(req.body.email);
-        let newdoctor = await doctor.findAll({ where: { email: req.body.email } })
+        console.log(req.params.id);
+        let newdoctor = await doctor.findAll({ where: { email: req.params.id } })
+        console.log(newdoctor);
         res.status(202).send({isError:false,Msg:newdoctor})
     }catch(err){
         res.status(404).send({isError:true,Msg:err})

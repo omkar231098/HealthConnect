@@ -2,14 +2,39 @@
 import Navbar from "../Components/Basic/Navbar";
 import Leftside from "../Dashbord/LeftsideDoctor";
 import Footer from "../Components/Basic/Footer";
+import {authContext} from "../Context/AuthContext";
 // import jwt_decode from "jwt-decode";
 
 import "../Dashbord/dash.css";
+import { useState,useEffect,useContext } from "react";
 // import { authContext } from "../Context/AuthContext"
 
 const PersonalDetails = () => {
-//   const { token } = useContext(AuthContext);
-//   const doctor = useMemo(() => jwt_decode(token), [token]);
+  const {email,token,refToken} = useContext(authContext)
+  const [data,setData] = useState({});
+  useEffect(()=>{
+    fetch(`${process.env.REACT_APP_HOST_URL}doctor/find/${email}`,{
+      method :"GET",
+      headers :{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'authorization':`Bearer ${token}`,
+        'refresh':`Bearer ${refToken}`
+      },
+    }).then((res)=> res.json()).then((res)=>{
+      console.log(res)
+      if(!res.isError){
+        console.log(res.Msg);
+        setData(res.Msg[0])
+      }else{
+        console.log(res.Msg);
+        alert("Something went wrong please try again.");
+      }
+    }).catch((err)=>{
+      console.log(err);
+      alert("Something went wrong please try again.")
+    })
+  },[])
 
   return (
     <div className="bg-dark" style={{ height: "100vh" }}>
@@ -39,27 +64,21 @@ const PersonalDetails = () => {
                   <span className="badge badge-info mr-2 p-2 text-uppercase ">
                     Name:
                   </span>
-                  {/* <span className="text-uppercase">{doctor.name}</span> */}
+                  <span className="text-uppercase">{data.name}</span>
                 </li>
                 <li className="list-group-item">
                   <span className="badge badge-info mr-2 p-2 text-uppercase">
                     Specialization:
                   </span>
                   <span className="text-capitalize">
-                    {/* {doctor.specialization} */}
+                    {data.specialization}
                   </span>
                 </li>
                 <li className="list-group-item">
                   <span className="badge badge-info mr-2 p-2 text-uppercase">
-                    Phone No:
+                    Email:
                   </span>
-                  {/* {doctor.phoneNumber} */}
-                </li>
-                <li className="list-group-item">
-                  <span className="badge badge-info mr-2 p-2 text-uppercase">
-                    Fees Per Session:
-                  </span>
-                  {/* {doctor.feesPerSession} */}
+                  {data.email}
                 </li>
               </ul>
             </div>
