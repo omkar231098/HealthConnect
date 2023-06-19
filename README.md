@@ -75,7 +75,7 @@ POST  /login
 ```
 <div align = "center">  
 
-<p>Some screenshots of our project</p>
+<p>Screenshots of our project</p>
 
 ![Screenshot (268)](https://github.com/omkar231098/rough-support-2269/assets/115460277/86e4d260-024d-4d98-bcf5-d48f87f68f85)
 
