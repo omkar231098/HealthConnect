@@ -74,11 +74,40 @@ POST  /login
 
 ```
 <div align = "center">  
-  
- 
-[DEPLOYED FRONTEND](http://healthconnect.shubhamthite.online/)
 
-[DEPLOYED BACKEND](http://api.shubhamthite.online/)
+<p>Some screenshots of our project</p>
+
+![Screenshot (268)](https://github.com/omkar231098/rough-support-2269/assets/115460277/86e4d260-024d-4d98-bcf5-d48f87f68f85)
+
+
+![Screenshot (269)](https://github.com/omkar231098/rough-support-2269/assets/115460277/2b283334-56e4-4d2b-93b0-e76dc2948d3e)
+
+![Screenshot (273)](https://github.com/omkar231098/rough-support-2269/assets/115460277/d4930f4b-539e-4606-8bd1-32828ee44406)
+
+
+![Screenshot (270)](https://github.com/omkar231098/rough-support-2269/assets/115460277/303399b5-8c94-4fae-a9f9-aa0a02807479)
+
+
+![Screenshot (271)](https://github.com/omkar231098/rough-support-2269/assets/115460277/21686844-ea94-46be-b91e-f63b4b009ad3)
+
+
+![Screenshot (272)](https://github.com/omkar231098/rough-support-2269/assets/115460277/6254e4ce-bfc8-493b-bcbb-b6aa5cca3040)
+
+
+
+
+![Screenshot (275)](https://github.com/omkar231098/rough-support-2269/assets/115460277/5f32419f-6e0e-4d69-9d67-0641516eaecf)
+
+
+
+![Screenshot (277)](https://github.com/omkar231098/rough-support-2269/assets/115460277/02ecb6e6-5801-4ce9-92bc-dec28903d100)
+
+
+
+ 
+[DEPLOYED FRONTEND](http://healthconnect.shubhamthite.online/)<p>http://healthconnect.shubhamthite.online/</p>
+
+[DEPLOYED BACKEND](http://api.shubhamthite.online/)<p>http://api.shubhamthite.online/</p>
 
  
 | `Authors` |
