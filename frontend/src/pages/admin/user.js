@@ -4,13 +4,14 @@ import Loading from './Loading'
 import {authContext} from "../../Context/AuthContext";
 
 
-import axios from 'axios'
+
 
 function User() {
 
     const {isAuth,token,email,refToken,role} = useContext(authContext)
     const [loading, setLoading] = useState([])
     const [users, setUsers] = useState([])
+    const [updateState, setUpdateState] = useState(-1)
     useEffect(() => {
         fetch(`${process.env.REACT_APP_HOST_URL}user/`,{
             method: 'GET',
@@ -53,18 +54,27 @@ function User() {
                 <td>{item.id}</td>
                 <td>{item.name}</td>
                 <td>{item.email}</td>
-                <td>{item.phone}</td>
+                <td>{item.createdAt}</td>
+                <td>{item.role}</td>
+             
+                {/* <td>
+                    <button  className='btn btn-success edit' onClick={()=> handleEdit(item.id)} type='button'>Edit</button>
+                </td> */}
                 <td>
-                    <Link to="/" className='btn btn-success'>Edit</Link>
-                </td>
-                <td>
-                    <Link to="/" className='btn btn-danger'>Delete</Link>
+                    <button  className='btn btn-danger delete' type='button' >Delete</button>
                 </td>
 
             </tr>
         )
     })
+// function handleEdit(e){
+// setUpdateState(id)
+// }
+// function handleDelete(id){
+//     const newUsers = users.filter(li => li.id !== id)
+//     setUsers(newUsers)
 
+// }
 
     return (
         <div className="container">
@@ -82,8 +92,9 @@ function User() {
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Edit</th>
+                                        <th>Date</th>
+                                        {/* <th>Edit</th> */}
+                                        <th>Role</th>
                                         <th>Delete</th>
                                     </tr>
                                 </thead>
