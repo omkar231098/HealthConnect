@@ -76,9 +76,9 @@ POST  /login
 <div align = "center">  
   
  
-[DEPLOYED FRONTEND]()
+[DEPLOYED FRONTEND](http://healthconnect.shubhamthite.online/)
 
-[DEPLOYED BACKEND]()
+[DEPLOYED BACKEND](http://api.shubhamthite.online/)
 
  
 | `Authors` |
