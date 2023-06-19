@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import {Box,FormControl,FormLabel,Input,Select, useToast,Center,Button, Checkbox,Text, Breadcrumb, BreadcrumbItem, BreadcrumbLink} from "@chakra-ui/react"
 import { useDispatch } from 'react-redux'
 import { addDoct } from '../../redux/AdminReducer/action'
+import { useNavigate } from 'react-router-dom';
+
+
 
 const initial = {
     name:"",
@@ -19,6 +22,10 @@ export default function AddDoct () {
 
     const toast = useToast()
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
+
+
     const [input, setInput] = useState(initial)
 
   const handleInputChange = (e) => {
@@ -30,10 +37,12 @@ export default function AddDoct () {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input)
-    dispatch(addDoct(input))
-    setInput(initial)
-  }
+    dispatch(addDoct(input));
+    setInput(initial);
+    navigate('/dashboard');
+  };
+  
+  
 
   return (
     <Box bg={"one"} m={"10px"}>

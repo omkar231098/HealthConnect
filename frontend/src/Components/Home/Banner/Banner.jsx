@@ -19,7 +19,7 @@ const Banner = () => {
                                 <h1>Better Health</h1>
                                 <p className="mb-xs-5">Join us to a fun and friendly Healthy environment. Our professionals are working so hard to see smile on your face that you deserve! We are dedicated about our duties.</p>
                                 <div className="banner-btn m-sm-auto">
-                                    <Link to="/paitentDash"><button className="theme-btn btn-fill">Appoinment</button></Link>
+                                    <Link to="/patient/createappointment"><button className="theme-btn btn-fill">Appoinment</button></Link>
                                 </div>
                             </div>
                         </Col>

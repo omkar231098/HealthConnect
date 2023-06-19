@@ -6,7 +6,7 @@ import PersonalDetails from "./pages/PaitentDash";
 import DoctorDashboard from "./pages/DoctorDash";
 import AdminLogin from "./Components/Admin/AdminLogin";
 import AllData from "./Components/Admin/AllData";
-import Slot from "./pages/Slots"
+import Slot from "./pages/Slots";
 import AdminPage from "./pages/AdminPage";
 import PersonalDetailsDocter from "./pages/PersonalDetails";
 import Home from "./Components/Home/Home/Home";
@@ -15,8 +15,8 @@ import Appointments from "./pages/Appointments";
 import CreateAppointment from "./pages/CreateAppointment";
 import TodaysSchedule from "./Components/TodaysSchedule";
 import DocAppointments from "./pages/PaymentHistory";
-import AddDoctor from "./Components/Admin/AddDoct"
-import User from "./pages/admin/User";
+import AddDoctor from "./Components/Admin/AddDoct";
+import User from "./pages/admin/user";
 
 function App() {
   return (
@@ -43,7 +43,7 @@ function App() {
         <Route path="/allAdminData" element={<AllData />} />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/doctorAdmin" element={<AddDoctor />} />
-        <Route path="/userAdmin" element= {<User/>}/>
+        <Route path="/userAdmin" element={<User />} />
       </Routes>
     </div>
   );

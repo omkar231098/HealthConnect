@@ -6,6 +6,7 @@ import { Box, Heading,Text, Thead,Table,Center,Button,Icon,
   TableCaption,
   TableContainer} from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
+
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { delData, editDoc, getDoctor } from '../../redux/AdminReducer/action'
@@ -27,17 +28,19 @@ export const Dashboard = () => {
     
 
     
-    const handleEdit = (id) => {
-      dispatch(editDoc(id)).then(()=>{
-        setupdate(p=>!p)
-      })
+    const handleEdit = (doctor) => {
+      dispatch(editDoc(doctor.id)).then(() => {
+        setupdate(prev => !prev);
+      });
     }
     
-    const handleApprove = (id,status) => {
-      dispatch(delData(id,status)).then((res)=>{
-        setupdate(p=>!p)
-      })
+    
+    const handleApprove = (doctor, status) => {
+      dispatch(delData(doctor.id, status)).then(() => {
+        setupdate(prev => !prev);
+      });
     }
+    
     useEffect(()=>{
       dispatch(getDoctor())
     },[update])
@@ -53,7 +56,7 @@ export const Dashboard = () => {
           <Center>
           <Table  w={"80%"} m={"20px"} boxShadow={"md"} >
             <Thead>
-              <Tr h="10">
+              <Tr h="10"> 
                 <Th><Center fontSize={"15px"}>Sr.No</Center></Th>
                 <Th fontSize={"15px"}>Name</Th>
                 <Th fontSize={"15px"}>profile</Th>
@@ -63,12 +66,24 @@ export const Dashboard = () => {
             </Thead>
               
             <Tbody >
-            {data?.length > 0 && data?.map((e)=>{
-              return(
-              <Tr key={e.id} >
-                <DocCrud {...e} handleEdit={handleEdit} handleApprove={handleApprove}/>
-              </Tr>)
-              })}
+            {data?.length > 0 && data?.map((doctor, index) => {
+  return (
+    <Tr key={doctor.id}>
+      <Td>{index + 1}</Td>
+      <Td>{doctor.name}</Td>
+      <Td>{doctor.profile}</Td>
+      <Td>
+        <Button onClick={() => handleEdit(doctor)}>Edit</Button>
+      </Td>
+      <Td>
+        <Button onClick={() => handleApprove(doctor, 'delete')}>
+          <DeleteIcon />
+        </Button>
+      </Td>
+    </Tr>
+  );
+})}
+
             </Tbody>
             
           </Table>
