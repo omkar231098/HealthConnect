@@ -129,18 +129,7 @@ POST  /login
 
  ![Health-Connect Homepage](https://github.com/omkar231098/rough-support-2269/assets/109202596/03a46f50-3222-4d9f-a311-2027e78f57e0)
 
-  ## Login Page
-
-  ![Login Page](https://github.com/omkar231098/rough-support-2269/assets/109202596/cc5222c5-bd80-4342-ba41-044b47a75a37)
-
-  ## Register Page
-
-![Register Page](https://github.com/omkar231098/rough-support-2269/assets/109202596/64c941ab-6e13-4760-be8e-3478dd012459)
-
-
-  ## Patient Personal Details Page
-
-![Patient Personal Details](https://github.com/omkar231098/rough-support-2269/assets/109202596/77aea657-455c-4e10-b014-6367ed9c601c)
+  
 
   
 
