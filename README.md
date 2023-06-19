@@ -108,3 +108,11 @@ POST  /login
 
 ![Register Page](https://github.com/omkar231098/rough-support-2269/assets/109202596/64c941ab-6e13-4760-be8e-3478dd012459)
 
+
+  ## Patient Personal Details Page
+
+![Patient Personal Details](https://github.com/omkar231098/rough-support-2269/assets/109202596/77aea657-455c-4e10-b014-6367ed9c601c)
+
+  
+
+
