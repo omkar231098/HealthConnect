@@ -4,7 +4,7 @@ import Register from "./Components/Register";
 import Login from "./Components/Login";
 import PersonalDetails from "./pages/PaitentDash";
 import DoctorDashboard from "./pages/DoctorDash";
-import AdminLogin from "./Components/Admin/AdminLogin";
+
 import AllData from "./Components/Admin/AllData";
 import Slot from "./pages/Slots";
 import AdminPage from "./pages/AdminPage";
@@ -16,7 +16,7 @@ import CreateAppointment from "./pages/CreateAppointment";
 import TodaysSchedule from "./Components/TodaysSchedule";
 import DocAppointments from "./pages/PaymentHistory";
 import AddDoctor from "./Components/Admin/AddDoct";
-import AddDoctor from "./Components/Admin/AddDoct"
+
 
 import User from "./pages/admin/user";
 
