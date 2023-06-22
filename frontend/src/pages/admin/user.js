@@ -1,18 +1,33 @@
-import { Link } from 'react-router-dom'
-import React, { useEffect, useState, useContext } from 'react';
-import Loading from './Loading'
-import {authContext} from "../../Context/AuthContext";
+// import { Link } from 'react-router-dom'
+import React, { useState, useEffect, useContext } from "react";
+import { authContext } from "../../Context/AuthContext";
+// import Loading from './Loading'
+
+
+// import { authContext } from "../Context/AuthContext";
 
 
 
 
 function User() {
 
-    const {isAuth,token,email,refToken,role} = useContext(authContext)
+    const { token, email, refToken } = useContext(authContext);
     const [loading, setLoading] = useState([])
     const [users, setUsers] = useState([])
     const [updateState, setUpdateState] = useState(-1)
+
+
+
     useEffect(() => {
+
+        getdata()
+        
+    }, [])
+
+
+
+    function getdata(){
+
         fetch(`${process.env.REACT_APP_HOST_URL}user/`,{
             method: 'GET',
             headers: {
@@ -34,15 +49,41 @@ function User() {
         .catch((err)=>{
           console.log(err);
         });
-    }, [])
 
-    // if(loading){
-    //     return (
-    //         <div>
-    //            <Loading />
-    //         </div>
-    //     )
-    // }
+        
+    }
+
+
+
+    const handleReject = (appointmentId) => {
+        
+        console.log("insidedelete")
+        fetch(`${process.env.REACT_APP_HOST_URL}user/${appointmentId}`, {
+          method: 'DELETE',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'authorization': `Bearer ${token}`,
+            'refresh': `Bearer ${refToken}`
+          }
+        //   body: JSON.stringify({ status: "rejected" })
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            console.log(res)
+            if (!res.isError) {
+              getdata()
+             
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+    
+      };
+
+
+
 
 
 
@@ -61,7 +102,7 @@ function User() {
                     <button  className='btn btn-success edit' onClick={()=> handleEdit(item.id)} type='button'>Edit</button>
                 </td> */}
                 <td>
-                    <button  className='btn btn-danger delete' type='button' >Delete</button>
+                    <button   onClick={() => handleReject(item.id)} className='btn btn-danger delete' type='button' >Delete</button>
                 </td>
 
             </tr>
