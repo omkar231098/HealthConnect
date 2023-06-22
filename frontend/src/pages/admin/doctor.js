@@ -1,17 +1,17 @@
-import { Link } from 'react-router-dom'
-import React, { useEffect, useState, useContext } from 'react';
-import Loading from './Loading'
+// import { Link } from 'react-router-dom'
+import React, { useState, useEffect, useContext } from "react";
+// import Loading from './Loading'
 import {authContext} from "../../Context/AuthContext";
 
 
 
 
 function Doctor() {
-
-    const {isAuth,token,email,refToken,role} = useContext(authContext)
-    const [loading, setLoading] = useState([])
+    
+    const { token, email, refToken } = useContext(authContext);
+    // const [loading, setLoading] = useState([])
     const [doctor, setDoctor] = useState([])
-    const [updateState, setUpdateState] = useState(-1)
+    // const [updateState, setUpdateState] = useState(-1)
     useEffect(() => {
     getdata()
 
@@ -19,6 +19,7 @@ function Doctor() {
 
 
     function getdata(){
+
         fetch(`${process.env.REACT_APP_HOST_URL}doctor/`,{
             method: 'GET',
             headers: {
@@ -41,47 +42,9 @@ function Doctor() {
           console.log(err);
         });
     }
-    // if(loading){
-    //     return (
-    //         <div>
-    //            <Loading />
-    //         </div>
-    //     )
-    // }
 
 
-    var doctorDetails = "";
-  doctorDetails = doctor.map((item, index) => {
-        return (
-
-            <tr key={index}>
-                <td>{item.id}</td>
-                <td>{item.name}</td>
-                <td>{item.email}</td>
-                <td>{item.role}</td>
-                <td>{item.specialization}</td>
-                <td>{item.degree}</td>
-                <td>{item.yearOfExperience}</td>
-             
-                {/* <td>
-                    <button  className='btn btn-success edit' onClick={()=> handleEdit(item.id)} type='button'>Edit</button>
-                </td> */}
-                <td>
-                    <button  className='btn btn-danger delete' onClick={() => handleReject(item.id)} type='button' >Delete</button>
-                </td>
-
-            </tr>
-        )
-    })
-// function handleEdit(e){
-// setUpdateState(id)
-// }
-// function handleDelete(id){
-//     const newUsers = users.filter(li => li.id !== id)
-//     setUsers(newUsers)
-
-// }
-const handleReject = (appointmentId) => {
+    const handleReject = (appointmentId) => {
         console.log(appointmentId)
     console.log("insidedelete")
     fetch(`${process.env.REACT_APP_HOST_URL}doctor/${appointmentId}`, {
@@ -107,6 +70,34 @@ const handleReject = (appointmentId) => {
       });
 
   };
+
+
+
+    var doctorDetails = "";
+  doctorDetails = doctor.map((item, index) => {
+        return (
+
+            <tr key={index}>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>{item.email}</td>
+                <td>{item.role}</td>
+                <td>{item.specialization}</td>
+                <td>{item.degree}</td>
+                <td>{item.yearOfExperience}</td>
+             
+                {/* <td>
+                    <button  className='btn btn-success edit' onClick={()=> handleEdit(item.id)} type='button'>Edit</button>
+                </td> */}
+                <td>
+                    <button  className='btn btn-danger delete' onClick={() => handleReject(item.id)} type='button' >Delete</button>
+                </td>
+
+            </tr>
+        )
+    })
+
+
     return (
         <div className="container">
             
