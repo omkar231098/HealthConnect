@@ -86,34 +86,28 @@ function Doctor() {
   return (
     <Box display="flex">
       <Sidebar />
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <div className="card">
-              <div className="card-header">
-                <h4>Doctors List</h4>
-              </div>
-              <div className="card-body">
-                <table className="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Role</th>
-                      <th>Specialization</th>
-                      <th>Degree</th>
-                      <th>Experience</th>
-                      <th>Delete</th>
-                    </tr>
-                  </thead>
-                  <tbody>{doctorDetails}</tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Box flex="1" p="4">
+        <Text fontSize="2xl" fontWeight="bold" mb="4">
+          Doctors List
+        </Text>
+        <Box overflowX="auto">
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Specialization</th>
+                <th>Degree</th>
+                <th>Experience</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>{doctorDetails}</tbody>
+          </table>
+        </Box>
+      </Box>
     </Box>
   );
 }

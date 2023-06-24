@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Box, Heading, Text, Flex } from '@chakra-ui/react';
 import { Pie } from 'react-chartjs-2';
-import Sidebar from './Sidebar';
+import Sidebar from '../../Components/Admin/Sidebar';
 import { authContext } from '../../Context/AuthContext';
 
 export default function AllData() {
@@ -55,22 +55,22 @@ export default function AllData() {
   };
 
   return (
-    <Flex>
+    <Flex flexWrap="wrap">
       <Sidebar />
 
-      <Box w="100%" p={8}>
+      <Box flex="1" p={8} minWidth={0}>
         <Heading>Welcome Admin!</Heading>
         <Text color="gray.600" fontWeight="bold" mt={4}>
           Dashboard
         </Text>
 
-        <Flex justifyContent="space-between" mt={8}>
+        <Flex justifyContent="space-between" flexWrap="wrap" mt={8}>
           {/* BarChart component */}
           {/* StackbarCh component */}
         </Flex>
 
-        <Flex justifyContent="space-between" mt={8}>
-          <Box flex="1" mr={4} p={4} boxShadow="md" bg="white">
+        <Flex justifyContent="space-between" flexWrap="wrap" mt={8}>
+          <Box flex="1" mb={4} mr={4} p={4} boxShadow="md" bg="white" minWidth={0}>
             <Text fontSize="lg" fontWeight="bold" mb={2}>
               Total Doctors
             </Text>
@@ -92,7 +92,7 @@ export default function AllData() {
             </Box>
           </Box>
 
-          <Box flex="1" mr={4} p={4} boxShadow="md" bg="white">
+          <Box flex="1" mb={4} mr={4} p={4} boxShadow="md" bg="white" minWidth={0}>
             <Text fontSize="lg" fontWeight="bold" mb={2}>
               Total Patients
             </Text>
@@ -114,9 +114,9 @@ export default function AllData() {
             </Box>
           </Box>
 
-          <Box flex="1" p={4} boxShadow="md" bg="white">
+          <Box flex="1" mb={4} p={4} boxShadow="md" bg="white" minWidth={0}>
             <Text fontSize="lg" fontWeight="bold" mb={2}>
-            Total Appointments
+              Total Appointments
             </Text>
             <Box
               display="flex"
@@ -137,7 +137,7 @@ export default function AllData() {
           </Box>
         </Flex>
 
-        <Box mt={8}>
+        <Box mt={8} minWidth={0}>
           <Text fontSize="lg" fontWeight="bold" mb={2}>
             Doctor and Patient Distribution
           </Text>

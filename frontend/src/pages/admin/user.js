@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { authContext } from "../../Context/AuthContext";
 import { Box, Button } from '@chakra-ui/react';
-import Sidebar from "../../Components/Admin/Sidebar";
+import Sidebar from '../../Components/Admin/Sidebar';
 
 function User() {
   const { token, email, refToken } = useContext(authContext);
@@ -93,19 +93,21 @@ function User() {
                 <h4>Users List</h4>
               </div>
               <div className="card-body">
-                <table className="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Date</th>
-                      <th>Role</th>
-                      <th>Delete</th>
-                    </tr>
-                  </thead>
-                  <tbody>{userDetails}</tbody>
-                </table>
+                <div className="table-responsive">
+                  <table className="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Date</th>
+                        <th>Role</th>
+                        <th>Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>{userDetails}</tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
