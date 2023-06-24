@@ -1,104 +1,151 @@
-import React, { useEffect } from 'react'
-import { BarChart } from './BarChart'
-import { PieChartData } from './PieChartData'
-import Sidebar from './Sidebar'
-import { Box,Heading,Text,Center, withDefaultColorScheme} from '@chakra-ui/react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getDoctor, getPatient } from '../../redux/AdminReducer/action'
-import { StackbarCh } from './StackbarCh'
+import React, { useState, useEffect, useContext } from 'react';
+import { Box, Heading, Text, Flex } from '@chakra-ui/react';
+import { Pie } from 'react-chartjs-2';
+import Sidebar from './Sidebar';
+import { authContext } from '../../Context/AuthContext';
 
-export default function AllData(){
-  const data = useSelector((store)=>store.adminReducer.doctor)
-  console.log(data)
+export default function AllData() {
+  const { token, email, refToken } = useContext(authContext);
+  const [doctorCount, setDoctorCount] = useState(0);
+  const [patientCount, setPatientCount] = useState(0);
 
-  const p = useSelector((store)=>store.adminReducer.patient)
-  console.log(p)
+  useEffect(() => {
+    // Fetch doctor count
+    fetch(`${process.env.REACT_APP_HOST_URL}doctor/`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${token}`,
+        refresh: `Bearer ${refToken}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setDoctorCount(data.Msg.length))
+      .catch((err) => {
+        console.log(err);
+      });
 
-  const approve = p.filter((e)=>e.status===true)
-  const waiting = p.filter((e)=>e.status===false)
-  console.log(approve.length)
-  const dispatch = useDispatch();
-  useEffect(()=>{
-    dispatch(getPatient())
-  },[])
+    // Fetch patient count
+    fetch(`${process.env.REACT_APP_HOST_URL}user/`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${token}`,
+        refresh: `Bearer ${refToken}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setPatientCount(data.Msg.length))
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [token, refToken]);
+
+  const pieChartData = {
+    labels: ['Doctors', 'Patients'],
+    datasets: [
+      {
+        data: [doctorCount, patientCount],
+        backgroundColor: ['#FF6384', '#36A2EB'],
+        hoverBackgroundColor: ['#FF6384', '#36A2EB'],
+      },
+    ],
+  };
+
   return (
-    <>  
-        <Box  display={"flex"} justifyContent={"space-between"} w={"98%"} m={"auto"}>
-            <Sidebar/>
-            <Box w={"78%"}  boxShadow={"2xl"} p={"20px"}>
-            <Heading>Welcome Admin !</Heading>
-            <Text color="grey" as="b">Dashboard</Text>
-              <Box display={"flex"} justifyContent={"space-between"}>
-                <BarChart/>
-                <StackbarCh/>
-              </Box>
-                <Box width={"98%"} display={"flex"} justifyContent={"space-between"} >
-              
-                  <Box width={"50%"}  m={"10px"} boxShadow={"xl"} p={"20px"}>
-                    <Center>
-                    <Box
-                      w={"200px"}
-                      p={4}
-                      m={4}
-                      color='white'
-                      fontWeight='bold'
-                      borderRadius='md'
-                      bgGradient='linear(to-r, teal.500, green.500)'
-                      _hover={{
-                        bgGradient: 'linear(to-r, red.500, yellow.500)',
-                        width : "500px",
-                        fontSize : "20px"
-                      }}
-                    >
-                      <Center>Total Patients {p.length}</Center>
-                    </Box >
-                    </Center>
+    <Flex>
+      <Sidebar />
 
-                    <Center>
-                    <Box
-                      w={"200px"}
-                      p={4}
-                      m={4}
-                      color='white'
-                      fontWeight='bold'
-                      borderRadius='md'
-                      bgGradient='linear(to-r, teal.500, green.500)'
-                      _hover={{
-                        bgGradient: 'linear(to-r, red.500, yellow.500)',
-                        width : "500px",
-                        fontSize : "20px"
-                      }}
-                    >
-                      <Center>{`Approved appointments ${approve.length}`}</Center>
-                    </Box>
-                    </Center>
+      <Box w="100%" p={8}>
+        <Heading>Welcome Admin!</Heading>
+        <Text color="gray.600" fontWeight="bold" mt={4}>
+          Dashboard
+        </Text>
 
-                    <Center>
-                    <Box
-                      w={"200px"}
-                      p={4}
-                      m={4}
-                      color='white'
-                      fontWeight='bold'
-                      borderRadius='md'
-                      bgGradient='linear(to-r, teal.500, green.500)'
-                      _hover={{
-                        bgGradient: 'linear(to-r, red.500, yellow.500)',
-                        width : "500px",
-                        fontSize : "20px"
-                      }}
-                    >
-                      <Center>{`Patients on waiting : ${waiting.length}`}</Center>
-                    </Box>
-                    </Center>
-                  </Box>
+        <Flex justifyContent="space-between" mt={8}>
+          {/* BarChart component */}
+          {/* StackbarCh component */}
+        </Flex>
 
-                  <PieChartData/>
-                </Box>
+        <Flex justifyContent="space-between" mt={8}>
+          <Box flex="1" mr={4} p={4} boxShadow="md" bg="white">
+            <Text fontSize="lg" fontWeight="bold" mb={2}>
+              Total Doctors
+            </Text>
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              h="120px"
+              bgGradient="linear(to-r, teal.500, green.500)"
+              color="white"
+              borderRadius="md"
+              cursor="pointer"
+              transition="all 0.3s"
+              _hover={{
+                transform: 'scale(1.05)',
+              }}
+            >
+              <Text fontSize="4xl">{doctorCount}</Text>
             </Box>
+          </Box>
+
+          <Box flex="1" mr={4} p={4} boxShadow="md" bg="white">
+            <Text fontSize="lg" fontWeight="bold" mb={2}>
+              Total Patients
+            </Text>
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              h="120px"
+              bgGradient="linear(to-r, teal.500, green.500)"
+              color="white"
+              borderRadius="md"
+              cursor="pointer"
+              transition="all 0.3s"
+              _hover={{
+                transform: 'scale(1.05)',
+              }}
+            >
+              <Text fontSize="4xl">{patientCount}</Text>
+            </Box>
+          </Box>
+
+          <Box flex="1" p={4} boxShadow="md" bg="white">
+            <Text fontSize="lg" fontWeight="bold" mb={2}>
+            Total Appointments
+            </Text>
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              h="120px"
+              bgGradient="linear(to-r, teal.500, green.500)"
+              color="white"
+              borderRadius="md"
+              cursor="pointer"
+              transition="all 0.3s"
+              _hover={{
+                transform: 'scale(1.05)',
+              }}
+            >
+              <Text fontSize="4xl">16</Text>
+            </Box>
+          </Box>
+        </Flex>
+
+        <Box mt={8}>
+          <Text fontSize="lg" fontWeight="bold" mb={2}>
+            Doctor and Patient Distribution
+          </Text>
+          <Box bg="white" p={4} boxShadow="md">
+            <Pie data={pieChartData} />
+          </Box>
         </Box>
-    </>
-  )
+      </Box>
+    </Flex>
+  );
 }
-
-
