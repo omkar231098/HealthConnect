@@ -105,7 +105,7 @@ POST  /login
 
 
  
-[DEPLOYED FRONTEND](http://healthconnect.shubhamthite.online/)<p>http://healthconnect.shubhamthite.online/</p>
+[DEPLOYED FRONTEND](https://healthconnectpluse.netlify.app/)<p>http://healthconnect.shubhamthite.online/</p>
 
 [DEPLOYED BACKEND](http://api.shubhamthite.online/)<p>http://api.shubhamthite.online/</p>
 
