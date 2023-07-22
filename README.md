@@ -24,6 +24,20 @@
 </p>
 <hr>
 
+## Team Members
+
+
+ [OMKAR DHANAVE](https://github.com/omkar231098) 
+ 
+ [THITE SHUBHAM](https://github.com/shubhamthite09) 
+ 
+ [SHRADHA VASTRAKAR](https://github.com/ShradhaVastrakar) 
+ 
+ [VAIBHAV SHEVNE](https://github.com/vaibhzz101) 
+ 
+ [SANDEEP GUPTA](https://github.com/sandeepguptax2003) 
+
+ 
 ## Features 
 -  Authentication
 -  API Validation
@@ -110,20 +124,6 @@ POST  /login
 [DEPLOYED BACKEND](http://api.shubhamthite.online/)<p>http://api.shubhamthite.online/</p>
 
  
-| `Authors` |
-| :-------: | 
-
- [OMKAR DHANAVE](https://github.com/omkar231098) 
- 
- [THITE SHUBHAM](https://github.com/shubhamthite09) 
- 
- [SHRADHA VASTRAKAR](https://github.com/ShradhaVastrakar) 
- 
- [VAIBHAV SHEVNE](https://github.com/vaibhzz101) 
- 
- [SANDEEP GUPTA](https://github.com/sandeepguptax2003) 
-
-
 
 
 
